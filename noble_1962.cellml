@@ -1,32 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
-<!--  FILE :  noble_model_1962.xml
-
-CREATED :  18th December 2001
-
-LAST MODIFIED : 5th April 2003
-
-AUTHOR :  Catherine Lloyd
-          Department of Engineering Science
-          The University of Auckland
-          
-MODEL STATUS :  This model conforms to the CellML 1.0 Specification released on
-10th August 2001, and the working draft CellML Metadata 1.0 Specification released on 16th January 2002.
-
-DESCRIPTION :  This file contains a CellML description of Noble's 1962 mathematical model of long lasting action and pace-maker potentials of the Purkinje fibres of the heart. 
-
-CHANGES: 
-  20/01/2002 - AAC - updated metadata to conform to 16/01/2002 CellML Metadata 
-                     1.0 Specification.
-  28/02/2002 - CML - Corrected membrane_voltage_diff_eq.
-  05/04/2003 - AAC - Changed the model name so the model loads in the database 
-                     easier.
---><model xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqs="http://www.cellml.org/bqs/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" cmeta:id="noble_1962_version02" name="noble_1962_version02">
+<model xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqs="http://www.cellml.org/bqs/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" cmeta:id="noble_1962_version03" name="noble_1962_version03">
   
 
   <!--
     Below, we define some additional units for association with variables and
     constants within the model. The identifiers are fairly self-explanatory.
   -->
+
   <units name="ms">
     <unit units="second" prefix="milli"/>
   </units>
@@ -37,6 +17,7 @@ CHANGES:
 
   <units name="mV">
     <unit units="volt" prefix="milli"/>
+
   </units>
 
   <units name="per_mV">
@@ -47,6 +28,7 @@ CHANGES:
     <unit units="mV" exponent="-1"/>
     <unit units="ms" exponent="-1"/>
   </units>
+
   
   <units name="mS_per_mm2">
     <unit units="siemens" prefix="milli"/>
@@ -63,28 +45,33 @@ CHANGES:
     <unit units="metre" prefix="milli" exponent="-2"/>
   </units>
    
-  <!--
-    The "environment" component is used to declare variables that are used by
-    all or most of the other components, in this case just "time".
-  -->
-  <component cmeta:id="environment" name="environment">
-    <variable units="ms" public_interface="out" name="time"/>
+  <component name="interface" cmeta:id="interface">
+    
+    <!-- time is always a special case -->
+    <variable units="ms" public_interface="in" private_interface="out" name="time"/>
+    <!-- inputs -->
+
+    <variable units="uA_per_mm2" public_interface="in" private_interface="out" name="I_stim"/>
+    <variable units="mS_per_mm2" public_interface="in" private_interface="out" name="g_K_add"/>
+    <!-- outputs -->
   </component>
-  
+  <!--interface-->
+   
   <!--
     The "membrane" component is really the `root' node of our model.
     It defines the action potential variable "V" among other things.
   -->
-  <component cmeta:id="membrane" name="membrane">
+  <component name="membrane" cmeta:id="membrane">
     
 
-    <variable units="mV" public_interface="out" name="V" initial_value="-78.3"/>
+    <variable units="mV" public_interface="out" name="V" initial_value="-73.8"/>
     <variable units="uF_per_mm2" name="Cm" initial_value="0.12"/>
     <variable units="ms" public_interface="in" name="time"/>
+
     <variable units="uA_per_mm2" public_interface="in" name="i_Na"/>
     <variable units="uA_per_mm2" public_interface="in" name="i_K"/>
     <variable units="uA_per_mm2" public_interface="in" name="i_Leak"/>
-    <variable units="uA_per_mm2" name="I_stim"/>
+    <variable units="uA_per_mm2" public_interface="in" name="I_stim"/>
 
     <!--
       The membrane voltage (V) is calculated as an ordinary
@@ -96,6 +83,7 @@ CHANGES:
         <eq/>
         <apply>
           <diff/>
+
           <bvar>
             <ci> time </ci>
           </bvar>
@@ -106,6 +94,7 @@ CHANGES:
           <apply>
             <minus/>
             <ci>I_stim</ci>
+
             <apply>
               <plus/>
               <ci> i_Na </ci>
@@ -113,6 +102,7 @@ CHANGES:
               <ci> i_Leak </ci>
             </apply>
           </apply>
+
           <ci> Cm </ci>
         </apply>
       </apply>
@@ -124,17 +114,19 @@ CHANGES:
       <apply id="IStim_for_cmiss">
         <eq/>
         <ci>IStimC</ci>
+
         <ci>I_stim</ci>
       </apply>
     </math>
   </component>
   
-  <component cmeta:id="sodium_channel" name="sodium_channel">
+  <component name="sodium_channel" cmeta:id="sodium_channel">
     
 
     <variable units="uA_per_mm2" public_interface="out" name="i_Na"/>
     <variable units="mS_per_mm2" name="g_Na_max" initial_value="4.0"/>
     <variable units="mS_per_mm2" name="g_Na"/>
+
     <variable units="mV" name="E_Na" initial_value="40.0"/>
     <variable units="ms" public_interface="in" private_interface="out" name="time"/>
     <variable units="mV" public_interface="in" private_interface="out" name="V"/>
@@ -146,6 +138,7 @@ CHANGES:
       <apply id="g_Na_calculation">
         <eq/>
         <ci> g_Na </ci>
+
         <apply>
           <times/>
           <apply>
@@ -154,6 +147,7 @@ CHANGES:
             <cn cellml:units="dimensionless"> 3.0 </cn>
           </apply>
           <ci> h </ci>
+
           <ci> g_Na_max </ci>
         </apply>
       </apply>
@@ -164,6 +158,7 @@ CHANGES:
       <apply id="i_Na_calculation">
         <eq/>
         <ci> i_Na </ci>
+
         <apply>
           <times/>
           <apply>
@@ -175,6 +170,7 @@ CHANGES:
                 <power/>
                 <ci> m </ci>
                 <cn cellml:units="dimensionless"> 3.0 </cn>
+
               </apply>
               <ci> h </ci>
             </apply>
@@ -183,6 +179,7 @@ CHANGES:
           <apply>
             <minus/>
             <ci> V </ci>
+
             <ci> E_Na </ci>
           </apply>
         </apply>
@@ -190,10 +187,11 @@ CHANGES:
     </math>
   </component>
       
-  <component cmeta:id="sodium_channel_m_gate" name="sodium_channel_m_gate">
+  <component name="sodium_channel_m_gate" cmeta:id="sodium_channel_m_gate">
     
 
     <variable units="dimensionless" public_interface="out" name="m" initial_value="0.05"/>
+
     <variable units="per_ms" name="alpha_m"/>
     <variable units="per_ms" name="beta_m"/>
     <variable units="mV" public_interface="in" name="V"/>
@@ -204,6 +202,7 @@ CHANGES:
       <apply id="alpha_m_calculation">
         <eq/>
         <ci> alpha_m </ci>
+
         <apply>
           <divide/>
           <apply>
@@ -215,6 +214,7 @@ CHANGES:
                 <minus/>
                 <ci> V </ci>
               </apply>
+
               <cn cellml:units="mV"> 48.0 </cn>
             </apply>
           </apply>
@@ -228,12 +228,14 @@ CHANGES:
                   <minus/>
                   <apply>
                     <minus/>
+
                     <ci> V </ci>
                   </apply>
                   <cn cellml:units="mV"> 48.0 </cn>
                 </apply>
                 <cn cellml:units="mV"> 15.0 </cn>
               </apply>
+
             </apply>
             <cn cellml:units="dimensionless"> 1.0 </cn>
           </apply>
@@ -245,6 +247,7 @@ CHANGES:
     <math xmlns="http://www.w3.org/1998/Math/MathML" cmeta:id="beta_m_calculation_eq">
       <apply id="beta_m_calculation">
         <eq/>
+
         <ci> beta_m </ci>
         <apply>
           <divide/>
@@ -254,6 +257,7 @@ CHANGES:
             <apply>
               <plus/>
               <ci> V </ci>
+
               <cn cellml:units="mV"> 8.0 </cn>
             </apply>
           </apply>
@@ -266,12 +270,14 @@ CHANGES:
                 <apply>
                   <plus/>
                   <ci> V </ci>
+
                   <cn cellml:units="mV"> 8.0 </cn>
                 </apply>
                 <cn cellml:units="mV"> 5.0 </cn>
               </apply>
             </apply>
             <cn cellml:units="dimensionless"> 1.0 </cn>
+
           </apply>
         </apply>
       </apply>
@@ -287,6 +293,7 @@ CHANGES:
             <ci> time </ci>
           </bvar>
           <ci> m </ci>
+
         </apply>
         <apply>
           <minus/>
@@ -297,6 +304,7 @@ CHANGES:
               <minus/>
               <cn cellml:units="dimensionless"> 1.0 </cn>
               <ci> m </ci>
+
             </apply>
           </apply>
           <apply>
@@ -305,11 +313,12 @@ CHANGES:
             <ci> m </ci>
           </apply>
         </apply>
+
       </apply>
     </math>
   </component>
   
-  <component cmeta:id="sodium_channel_h_gate" name="sodium_channel_h_gate">
+  <component name="sodium_channel_h_gate" cmeta:id="sodium_channel_h_gate">
     
 
     <variable units="dimensionless" public_interface="out" name="h" initial_value="0.785"/>
@@ -319,6 +328,7 @@ CHANGES:
     <variable units="ms" public_interface="in" name="time"/>
 
     
+
     <math xmlns="http://www.w3.org/1998/Math/MathML" cmeta:id="alpha_h_calculation_eq">
       <apply id="alpha_h_calculation">
         <eq/>
@@ -330,6 +340,7 @@ CHANGES:
             <exp/>
             <apply>
               <divide/>
+
               <apply>
                 <minus/>
                 <apply>
@@ -339,6 +350,7 @@ CHANGES:
                 <cn cellml:units="mV"> 90.0 </cn>
               </apply>
               <cn cellml:units="mV"> 20.0 </cn>
+
             </apply>
           </apply>
         </apply>
@@ -350,6 +362,7 @@ CHANGES:
       <apply id="beta_h_calculation">
         <eq/>
         <ci> beta_h </ci>
+
         <apply>
           <divide/>
           <cn cellml:units="per_ms"> 1.0 </cn>
@@ -362,6 +375,7 @@ CHANGES:
                 <divide/>
                 <apply>
                   <minus/>
+
                   <apply>
                     <minus/>
                     <ci> V </ci>
@@ -369,6 +383,7 @@ CHANGES:
                   <cn cellml:units="mV"> 42.0 </cn>
                 </apply>
                 <cn cellml:units="mV"> 10.0 </cn>
+
               </apply>
             </apply>
           </apply>
@@ -382,6 +397,7 @@ CHANGES:
         <eq/>
         <apply>
           <diff/>
+
           <bvar>
             <ci> time </ci>
           </bvar>
@@ -392,6 +408,7 @@ CHANGES:
           <apply>
             <times/>
             <ci> alpha_h </ci>
+
             <apply>
               <minus/>
               <cn cellml:units="dimensionless"> 1.0 </cn>
@@ -401,6 +418,7 @@ CHANGES:
           <apply>
             <times/>
             <ci> beta_h </ci>
+
             <ci> h </ci>
           </apply>
         </apply>
@@ -408,13 +426,14 @@ CHANGES:
     </math>
   </component>
   
-  <component cmeta:id="potassium_channel" name="potassium_channel">
+  <component name="potassium_channel" cmeta:id="potassium_channel">
     
 
     <variable units="uA_per_mm2" public_interface="out" name="i_K"/>
+
     <variable units="mS_per_mm2" name="g_K1"/>
     <variable units="mS_per_mm2" name="g_K2"/>
-    <variable units="mS_per_mm2" intiial_value="0.0" name="g_K_add"/>
+    <variable units="mS_per_mm2" public_interface="in" name="g_K_add"/>
     <variable units="ms" public_interface="in" private_interface="out" name="time"/>
     <variable units="mV" public_interface="in" private_interface="out" name="V"/>
     <variable units="dimensionless" private_interface="in" name="n"/>
@@ -423,6 +442,7 @@ CHANGES:
     <math xmlns="http://www.w3.org/1998/Math/MathML" cmeta:id="i_K_calculation_eq">
       <apply id="i_K_calculation">
         <eq/>
+
         <ci> i_K </ci>
         <apply>
           <times/>
@@ -431,6 +451,7 @@ CHANGES:
             <ci> g_K1 </ci>
             <ci> g_K2 </ci>
             <ci> g_K_add </ci>
+
           </apply>
           <apply>
             <plus/>
@@ -439,6 +460,7 @@ CHANGES:
           </apply>
         </apply>
       </apply>
+
     </math>
       
     
@@ -451,6 +473,7 @@ CHANGES:
           <apply>
             <times/>
             <cn cellml:units="mS_per_mm2"> 1.2e-2 </cn>
+
             <apply>
               <exp/>
               <apply>
@@ -462,6 +485,7 @@ CHANGES:
                     <ci> V </ci>
                   </apply>
                   <cn cellml:units="mV"> 90.0 </cn>
+
                 </apply>
                 <cn cellml:units="mV"> 50.0 </cn>
               </apply>
@@ -470,6 +494,7 @@ CHANGES:
           <apply>
             <times/>
             <cn cellml:units="mS_per_mm2"> 0.015e-2 </cn>
+
             <apply>
               <exp/>
               <apply>
@@ -480,6 +505,7 @@ CHANGES:
                   <cn cellml:units="mV"> 90.0 </cn>
                 </apply>
                 <cn cellml:units="mV"> 60.0 </cn>
+
               </apply>
             </apply>
           </apply>
@@ -492,6 +518,7 @@ CHANGES:
       <apply id="g_K2_calculation">
         <eq/>
         <ci> g_K2 </ci>
+
         <apply>
           <times/>
           <cn cellml:units="mS_per_mm2"> 1.2e-2 </cn>
@@ -500,18 +527,20 @@ CHANGES:
             <ci> n </ci>
             <cn cellml:units="dimensionless"> 4.0 </cn>
           </apply>
+
         </apply>
       </apply>
     </math>
   </component>
     
-  <component cmeta:id="potassium_channel_n_gate" name="potassium_channel_n_gate">
+  <component name="potassium_channel_n_gate" cmeta:id="potassium_channel_n_gate">
     
 
     <variable units="dimensionless" public_interface="out" name="n" initial_value="0.0935"/>
     <variable units="per_ms" name="alpha_n"/>
     <variable units="per_ms" name="beta_n"/>
     <variable units="mV" public_interface="in" name="V"/>
+
     <variable units="ms" public_interface="in" name="time"/>
     
     
@@ -524,6 +553,7 @@ CHANGES:
           <apply>
             <times/>
             <cn cellml:units="per_mV_ms"> 0.0001 </cn>
+
             <apply>
               <minus/>
               <apply>
@@ -533,6 +563,7 @@ CHANGES:
               <cn cellml:units="mV"> 50.0 </cn>
             </apply>
           </apply>
+
           <apply>
             <minus/>
             <apply>
@@ -546,6 +577,7 @@ CHANGES:
                     <ci> V </ci>
                   </apply>
                   <cn cellml:units="mV"> 50.0 </cn>
+
                 </apply>
                 <cn cellml:units="mV"> 10.0 </cn>
               </apply>
@@ -553,6 +585,7 @@ CHANGES:
             <cn cellml:units="dimensionless"> 1.0 </cn>
           </apply>
         </apply>
+
       </apply>
     </math>
       
@@ -564,6 +597,7 @@ CHANGES:
         <apply>
           <times/>
           <cn cellml:units="per_ms"> 0.002 </cn>
+
           <apply>
             <exp/>
             <apply>
@@ -575,6 +609,7 @@ CHANGES:
                   <ci> V </ci>
                 </apply>
                 <cn cellml:units="mV"> 90.0 </cn>
+
               </apply>
               <cn cellml:units="mV"> 80.0 </cn>
             </apply>
@@ -585,6 +620,7 @@ CHANGES:
       
     
     <math xmlns="http://www.w3.org/1998/Math/MathML" cmeta:id="dn_dt_eq">
+
       <apply id="dn_dt">
         <eq/>
         <apply>
@@ -598,6 +634,7 @@ CHANGES:
           <minus/>
           <apply>
             <times/>
+
             <ci> alpha_n </ci>
             <apply>
               <minus/>
@@ -605,6 +642,7 @@ CHANGES:
               <ci> n </ci>
             </apply>
           </apply>
+
           <apply>
             <times/>
             <ci> beta_n </ci>
@@ -613,9 +651,10 @@ CHANGES:
         </apply>
       </apply>
     </math>
+
   </component>
   
-  <component cmeta:id="leakage_current" name="leakage_current">
+  <component name="leakage_current" cmeta:id="leakage_current">
     
     <variable units="uA_per_mm2" public_interface="out" name="i_Leak"/>
     <variable units="mS_per_mm2" name="g_L" initial_value="0.0"/>
@@ -625,6 +664,7 @@ CHANGES:
     <math xmlns="http://www.w3.org/1998/Math/MathML">
       <apply id="i_Leak_calculation">
         <eq/>
+
         <ci> i_Leak </ci>
         <apply>
           <times/>
@@ -633,6 +673,7 @@ CHANGES:
             <minus/>
             <ci> V </ci>
             <ci> E_L </ci>
+
           </apply>
         </apply>
       </apply>
@@ -643,6 +684,7 @@ CHANGES:
     <relationship_ref relationship="containment"/>
     <component_ref component="membrane">
       <component_ref component="sodium_channel">
+
         <component_ref component="sodium_channel_m_gate"/>
         <component_ref component="sodium_channel_h_gate"/>
       </component_ref>
@@ -652,42 +694,53 @@ CHANGES:
       <component_ref component="leakage_current"/>
     </component_ref>
   </group>
+
   
   <group>
     <relationship_ref relationship="encapsulation"/>
-    <component_ref component="sodium_channel">
-      <component_ref component="sodium_channel_m_gate"/>
-      <component_ref component="sodium_channel_h_gate"/>
-    </component_ref>
-    <component_ref component="potassium_channel">
-      <component_ref component="potassium_channel_n_gate"/>
+    <component_ref component="interface">
+      <component_ref component="membrane"/>
+      <component_ref component="sodium_channel">
+        <component_ref component="sodium_channel_m_gate"/>
+        <component_ref component="sodium_channel_h_gate"/>
+      </component_ref>
+      <component_ref component="potassium_channel">
+
+        <component_ref component="potassium_channel_n_gate"/>
+      </component_ref>
+      <component_ref component="leakage_current"/>
     </component_ref>
   </group>
   
   <connection>
-    <map_components component_2="environment" component_1="membrane"/>
+    <map_components component_2="interface" component_1="membrane"/>
+    <map_variables variable_2="time" variable_1="time"/>
+    <map_variables variable_2="I_stim" variable_1="I_stim"/>
+
+  </connection>
+
+
+  <connection>
+    <map_components component_2="interface" component_1="sodium_channel"/>
     <map_variables variable_2="time" variable_1="time"/>
   </connection>
 
 
   <connection>
-    <map_components component_2="environment" component_1="sodium_channel"/>
+    <map_components component_2="interface" component_1="potassium_channel"/>
+
     <map_variables variable_2="time" variable_1="time"/>
+    <map_variables variable_2="g_K_add" variable_1="g_K_add"/>
   </connection>
 
 
   <connection>
-    <map_components component_2="environment" component_1="potassium_channel"/>
-    <map_variables variable_2="time" variable_1="time"/>
-  </connection>
-
-
-  <connection>
-    <map_components component_2="environment" component_1="leakage_current"/>
+    <map_components component_2="interface" component_1="leakage_current"/>
     <map_variables variable_2="time" variable_1="time"/>
   </connection>
   
   <connection>
+
     <map_components component_2="sodium_channel" component_1="membrane"/>
     <map_variables variable_2="V" variable_1="V"/>
     <map_variables variable_2="i_Na" variable_1="i_Na"/>
@@ -698,6 +751,7 @@ CHANGES:
     <map_components component_2="potassium_channel" component_1="membrane"/>
     <map_variables variable_2="V" variable_1="V"/>
     <map_variables variable_2="i_K" variable_1="i_K"/>
+
   </connection>
 
 
@@ -709,6 +763,7 @@ CHANGES:
   
   <connection>
     <map_components component_2="sodium_channel_m_gate" component_1="sodium_channel"/>
+
     <map_variables variable_2="m" variable_1="m"/>
     <map_variables variable_2="time" variable_1="time"/>
     <map_variables variable_2="V" variable_1="V"/>
@@ -719,6 +774,7 @@ CHANGES:
     <map_components component_2="sodium_channel_h_gate" component_1="sodium_channel"/>
     <map_variables variable_2="h" variable_1="h"/>
     <map_variables variable_2="time" variable_1="time"/>
+
     <map_variables variable_2="V" variable_1="V"/>
   </connection>
 
@@ -736,361 +792,398 @@ CHANGES:
 
 
 
+
+
 <rdf:RDF>
   <rdf:Seq rdf:about="rdf:#citationAuthorsSeq">
     <rdf:li rdf:resource="rdf:#author1Vcard"/>
   </rdf:Seq>
-  <rdf:Description rdf:about="rdf:#729bd358-9396-439f-ac95-8268901a20a6">
-    <rdf:value>
-            The conductance of the first "type" of potassium channels present in
-            this model, using an empirical formaulation.
-          </rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#09b5f6e1-1b94-4b1f-8bdc-9213c81ceba8">
-    <vCard:ORG rdf:resource="rdf:#e6a49153-079b-4e3c-a6f5-e2706f69b806"/>
-    <vCard:EMAIL rdf:resource="rdf:#820a0479-25c9-46da-8410-645709bb1763"/>
-    <vCard:N rdf:resource="rdf:#22f85c07-aa75-4b65-96f4-3e2c411c05db"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#4f91a68a-900b-4aa2-9595-81361940c1b4">
-    <rdf:value>
-            The kinetics of the n gate.
-          </rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#90dbd578-3f37-423e-a68a-0e27258f4591">
-    <dcterms:modified rdf:resource="rdf:#690a2e66-80d4-417c-9193-4632611e2615"/>
-    <rdf:value>
-          Corrected membrane_voltage_diff_eq.
-        </rdf:value>
-    <cmeta:modifier rdf:resource="rdf:#f9eb5e89-4512-4d1e-8430-343bfc5a2d4f"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#1e542240-aa20-4c6f-93a6-d9798a14181b">
-    <rdf:value>
-            The modified sodium current from the 1952 Hodgkin Huxley model.
-          </rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#d0583dc4-ffec-4d52-ac65-8efe0d5e6ca6">
-    <vCard:N rdf:resource="rdf:#b7c5121c-a97d-4955-9b56-3f237601e8c9"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#b19e532d-c709-458a-b587-d548ac2b362a">
-    <rdf:value>
-            The voltage-dependent activation gate for the sodium channel - the m
-            gate.
-          </rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#f9214f59-a161-4dd2-b982-ac92d28e8b65">
-    <rdf:value>
-            The closing rate for the m gate.
-          </rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="#g_Na_calculation_eq">
-    <cmeta:comment rdf:resource="rdf:#3e64f866-fa59-447e-aead-41bab3cc076a"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#91658d6a-652f-41a5-b442-0432cdbc6724">
-    <vCard:Given>David</vCard:Given>
-    <vCard:Family>Nickerson</vCard:Family>
-    <vCard:Other>P</vCard:Other>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#b7c5121c-a97d-4955-9b56-3f237601e8c9">
-    <vCard:Given>Autumn</vCard:Given>
-    <vCard:Family>Cuellar</vCard:Family>
-    <vCard:Other>A</vCard:Other>
+  <rdf:Description rdf:about="#potassium_channel_n_gate">
+    <cmeta:comment rdf:resource="rdf:#2908aee8-6497-4ec7-ac21-f6d17da81e91"/>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#author1Vcard">
     <rdf:type rdf:resource="http://www.cellml.org/bqs/1.0#Person"/>
     <vCard:N rdf:resource="rdf:#author1VcardN"/>
   </rdf:Description>
-  <rdf:Description rdf:about="rdf:#972265e2-987b-4f0a-86af-0e1751726292">
-    <dc:creator rdf:resource="rdf:#ee878bf4-162f-4eb6-b7ec-5997075b14ec"/>
-    <rdf:value>This is the CellML description of Noble's 1962 mathematical model of Purkinje fibre action and pace-maker potentials. The equations formulated by Hodgkin and Huxley (1952) to describe the electrical activity of squid nerve have been modified to describe the action and pace-maker potentials of the Purkinje fibres of the heart.</rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="#noble_1962_version02">
-    <dc:title>
-        The 1962 Noble Model of Purkinje Fibre Action and Pace-maker Potentials
-      </dc:title>
-    <cmeta:comment rdf:resource="rdf:#972265e2-987b-4f0a-86af-0e1751726292"/>
-    <bqs:reference rdf:resource="rdf:#10f2f937-2f13-4d0b-a3e6-6010e3312ea6"/>
-    <cmeta:species>Mammalia</cmeta:species>
-  </rdf:Description>
-  <rdf:Description rdf:about="#membrane_voltage_diff_eq">
-    <cmeta:comment rdf:resource="rdf:#b03643b4-9dbe-40d4-9826-4862e4ca4ecc"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#g_K1_calculation_eq">
-    <cmeta:comment rdf:resource="rdf:#729bd358-9396-439f-ac95-8268901a20a6"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#3bfe771f-a2e3-4876-8b8d-e5fe72112dc8">
-    <dcterms:W3CDTF>2001-12-18</dcterms:W3CDTF>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#4a632604-2775-496d-a0be-cbb2ab1dac1f">
-    <dcterms:modified rdf:resource="rdf:#2c044ddc-7779-4d59-bc24-c9a0d0eda999"/>
-    <rdf:value>
-          Updated metadata to conform to the 16/01/2002 CellML Metadata 1.0 
-          Specification.
-        </rdf:value>
-    <cmeta:modifier rdf:resource="rdf:#52d19033-645d-4a2e-ac6b-b1ca115c4b57"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="">
-    <dc:publisher>
-        The University of Auckland, Bioengineering Research Group
-      </dc:publisher>
-    <cmeta:modification rdf:resource="rdf:#4a632604-2775-496d-a0be-cbb2ab1dac1f"/>
-    <cmeta:modification rdf:resource="rdf:#90dbd578-3f37-423e-a68a-0e27258f4591"/>
-    <cmeta:modification rdf:resource="rdf:#9e4947eb-a0eb-45a9-b466-ecc0cc92e50c"/>
-    <cmeta:modification rdf:resource="rdf:#f389acb6-636f-402a-9dce-7d82a90ef237"/>
-    <dcterms:created rdf:resource="rdf:#3bfe771f-a2e3-4876-8b8d-e5fe72112dc8"/>
-    <dc:creator rdf:resource="rdf:#09b5f6e1-1b94-4b1f-8bdc-9213c81ceba8"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#f402040a-1317-4f37-a51c-5389c6e7e45b">
-    <rdf:value>
-            A non-specific background current attributed in part to chloride
-            ions. Can be turned on by specifying an appropriate value for the
-            conductance (~0.00075 mS/mm2).
-          </rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#e6a49153-079b-4e3c-a6f5-e2706f69b806">
-    <vCard:Orgname>The University of Auckland</vCard:Orgname>
-    <vCard:Orgunit>The Bioengineering Research Group</vCard:Orgunit>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#3c7b3f8f-f8db-4cdb-bd42-eff8069efcf4">
-    <vCard:N rdf:resource="rdf:#91658d6a-652f-41a5-b442-0432cdbc6724"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#beta_h_calculation_eq">
-    <cmeta:comment rdf:resource="rdf:#dbee766b-9d97-4566-afe5-66f5e51e23c6"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#2638e8ea-4da4-43b5-b2e1-4d6dcfd52f4f">
-    <rdf:value>
-            The kinetics of the h gate.
-          </rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="#IStim_for_cmiss_eq">
-    <cmeta:comment rdf:resource="rdf:#f70e2ada-8e7e-42b6-8106-fc6e45491280"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#b03643b4-9dbe-40d4-9826-4862e4ca4ecc">
-    <rdf:value>
-            The kinetics of the transmembrane potential.
-          </rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#fcd04feb-46ea-4d07-ae53-8dfd06020d76">
-    <rdf:value>
-            The conductance of the second "type" of potassium channels present
-            in this model, using the Hodgkin Huxley 1952 type kinetics.
-          </rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="#i_K_calculation_eq">
-    <cmeta:comment rdf:resource="rdf:#e62da2ba-02e0-40af-8f05-9f48a459ca22"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#f00d9f15-4a8f-4250-ac44-65c242a0f21f">
-    <rdf:value>
-            The opening rate for the h gate.
-          </rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#6d2720cd-a304-468d-840c-2f24a340d86a">
-    <dc:creator rdf:resource="rdf:#citationAuthorsSeq"/>
-    <dc:title>A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Action and Pace-maker Potentials</dc:title>
-    <bqs:volume>160</bqs:volume>
-    <bqs:first_page>317</bqs:first_page>
-    <bqs:Journal rdf:resource="rdf:#e786d9b7-9878-48c7-ab1f-f65f23518601"/>
-    <dcterms:issued rdf:resource="rdf:#45710e0a-ad43-4c8f-92e6-d5e588602090"/>
-    <bqs:last_page>352</bqs:last_page>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#c3d2b537-087c-400d-9f45-e48197208029">
-    <dcterms:W3CDTF>2003-04-05</dcterms:W3CDTF>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#4a04dcee-dd77-4a23-a961-5d6515f51875">
-    <dcterms:W3CDTF>2003-04-05</dcterms:W3CDTF>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#22f85c07-aa75-4b65-96f4-3e2c411c05db">
-    <vCard:Given>Catherine</vCard:Given>
-    <vCard:Family>Lloyd</vCard:Family>
-    <vCard:Other>May</vCard:Other>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#518e8048-8b0a-43b5-9ede-d9e7a272dc5e">
-    <vCard:Given>Autumn</vCard:Given>
-    <vCard:Family>Cuellar</vCard:Family>
-    <vCard:Other>A.</vCard:Other>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#b19f8ad8-e549-4077-8f66-b55d0a16601e">
-    <rdf:value>
-            Calculation of the channel current.
-          </rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#e786d9b7-9878-48c7-ab1f-f65f23518601">
-    <dc:title>Journal of Physiology</dc:title>
-  </rdf:Description>
-  <rdf:Description rdf:about="#dn_dt_eq">
-    <cmeta:comment rdf:resource="rdf:#4f91a68a-900b-4aa2-9595-81361940c1b4"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#690a2e66-80d4-417c-9193-4632611e2615">
-    <dcterms:W3CDTF>2002-02-28</dcterms:W3CDTF>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#45710e0a-ad43-4c8f-92e6-d5e588602090">
-    <dcterms:W3CDTF>1962-01-01</dcterms:W3CDTF>
-  </rdf:Description>
-  <rdf:Description rdf:about="#potassium_channel_n_gate">
-    <cmeta:comment rdf:resource="rdf:#ad758bf3-74a1-40d5-8cf5-aa60d3c4b066"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#820a0479-25c9-46da-8410-645709bb1763">
-    <rdf:type rdf:resource="http://imc.org/vCard/3.0#internet"/>
-    <rdf:value>c.lloyd@auckland.ac.nz</rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#2ebc3c90-0886-4b84-82c1-fd4339d6c3a0">
-    <rdf:value>
-            The kinetics of the m gate.
-          </rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#ad758bf3-74a1-40d5-8cf5-aa60d3c4b066">
-    <rdf:value>
-            The voltage-dependent activation gate for the potassium channel -
-            the n gate.
-          </rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#0dbc2c42-9775-4695-8949-e30e99099f93">
-    <vCard:Given>Denis</vCard:Given>
-    <vCard:Family>Noble</vCard:Family>
-  </rdf:Description>
-  <rdf:Description rdf:about="#g_K2_calculation_eq">
-    <cmeta:comment rdf:resource="rdf:#fcd04feb-46ea-4d07-ae53-8dfd06020d76"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#4a0ba708-8b30-4885-a816-fbedd13f8694">
-    <bqs:Person rdf:resource="rdf:#bfea0000-699a-417c-93d8-8cfd4b1c323e"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#leakage_current">
-    <cmeta:comment rdf:resource="rdf:#f402040a-1317-4f37-a51c-5389c6e7e45b"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#3e64f866-fa59-447e-aead-41bab3cc076a">
-    <rdf:value>
-            Calculation of the channel conductance.
-          </rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#e7229a52-4ee3-4003-999a-5e807bbf02a1">
+  <rdf:Description rdf:about="rdf:#ee3149d8-6726-4fa3-9285-bfa0729fbbbc">
     <rdf:value>
             The voltage-dependent inactivation gate for the sodium channel - the
             h gate.
           </rdf:value>
   </rdf:Description>
-  <rdf:Description rdf:about="rdf:#52d19033-645d-4a2e-ac6b-b1ca115c4b57">
-    <vCard:N rdf:resource="rdf:#518e8048-8b0a-43b5-9ede-d9e7a272dc5e"/>
+  <rdf:Description rdf:about="#g_K1_calculation_eq">
+    <cmeta:comment rdf:resource="rdf:#99da7685-88a0-4947-829b-ef60b97e48a8"/>
   </rdf:Description>
-  <rdf:Description rdf:about="rdf:#69f6a38a-7e3b-4178-82cc-4e139d03d338">
+  <rdf:Description rdf:about="rdf:#27ea8cc2-ba25-4fb9-90a2-741d727cb8ff">
+    <dc:title>Journal of Physiology</dc:title>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#5191b3f2-3e92-4ea6-8fe1-f64cde0d807f">
     <rdf:value>
             The main component of the model, containing the membrane currents
             and defining the transmembrane potential.
           </rdf:value>
   </rdf:Description>
-  <rdf:Description rdf:about="rdf:#2827a6c4-29e9-4222-9c94-9967182218d9">
+  <rdf:Description rdf:about="rdf:#40a7165d-11f3-44ce-8a5e-084ed9288f7f">
     <rdf:value>
+
+            This is a dummy equation that we simply use to make grabbing the
+            value easier.
+          </rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#38cd39b9-4e98-4126-9afe-5097dbce8923">
+    <dc:creator rdf:resource="rdf:#a19270c3-372a-4ea9-a340-c9eb1bc5533a"/>
+    <rdf:value>This is the CellML description of Noble's 1962 mathematical model of Purkinje fibre action and pace-maker potentials. The equations formulated by Hodgkin and Huxley (1952) to describe the electrical activity of squid nerve have been modified to describe the action and pace-maker potentials of the Purkinje fibres of the heart.</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#42f59d0c-4c3e-4dd1-929a-205dc5dfeb38">
+    <vCard:N rdf:resource="rdf:#7e861154-7a2f-4c95-b2b4-e15df0355138"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#7d20d05b-ddc0-42c7-8075-c245232254f9">
+    <rdf:value>
+            The voltage-dependent activation gate for the sodium channel - the m
+            gate.
+          </rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#f23f3305-4cdf-4780-a72c-4152aded0014">
+    <rdf:value>
+            The kinetics of the h gate.
+          </rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#e197a437-3705-49f6-a928-be442a610184">
+    <dcterms:modified rdf:resource="rdf:#07d8ca47-6d44-4f55-a652-b9299ae05f0e"/>
+    <rdf:value>
+          Changed the model name so the model loads in the database easier.
+        </rdf:value>
+    <cmeta:modifier rdf:resource="rdf:#6a515533-c978-4e91-b090-12c3dfb316fd"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#157a064e-528c-45ae-9897-fb89f3866408">
+    <vCard:Given>David</vCard:Given>
+    <vCard:Family>Nickerson</vCard:Family>
+    <vCard:Other>P</vCard:Other>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#5b12196b-c8ea-463b-b476-dba205a6572e">
+    <dcterms:W3CDTF>2001-12-18</dcterms:W3CDTF>
+  </rdf:Description>
+  <rdf:Description rdf:about="#alpha_m_calculation_eq">
+    <cmeta:comment rdf:resource="rdf:#eedb48af-808f-49de-a39c-def7ad9e631a"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#59411310-010e-49e9-958b-90918b640813">
+    <vCard:Orgname>The University of Auckland</vCard:Orgname>
+    <vCard:Orgunit>Bioengineering Institute</vCard:Orgunit>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#da15adff-5f91-43e0-966b-95c756ed72d8">
+    <vCard:N rdf:resource="rdf:#157a064e-528c-45ae-9897-fb89f3866408"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#beta_n_calculation_eq">
+    <cmeta:comment rdf:resource="rdf:#a655e156-1727-4693-8fac-8a54c7ea7ac1"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#bb55d16a-2a7d-4437-a121-428d4b6aff76">
+    <rdf:value>
+            The conductance of the second "type" of potassium channels present
+            in this model, using the Hodgkin Huxley 1952 type kinetics.
+          </rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <dc:publisher>
+        Bioengineering Institute, The University of Auckland.
+      </dc:publisher>
+    <cmeta:modification rdf:resource="rdf:#00ae7113-dc38-484a-b3a8-1cf724a2f7c7"/>
+    <cmeta:modification rdf:resource="rdf:#37c3fdbc-9546-445c-b0d3-32d92bb3218f"/>
+    <cmeta:modification rdf:resource="rdf:#61d2af92-bfd9-4f2b-ac92-6f8bdad0cc3b"/>
+    <cmeta:modification rdf:resource="rdf:#86bbbba0-d173-4b72-bf89-ab42d3780bcc"/>
+    <cmeta:modification rdf:resource="rdf:#e197a437-3705-49f6-a928-be442a610184"/>
+    <dcterms:created rdf:resource="rdf:#5b12196b-c8ea-463b-b476-dba205a6572e"/>
+    <dc:creator rdf:resource="rdf:#39b163a2-d88e-43fb-9e35-096cee07a629"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#61d2af92-bfd9-4f2b-ac92-6f8bdad0cc3b">
+    <dcterms:modified rdf:resource="rdf:#10772f0d-ec12-48b0-92cc-7bd12bb0cc2f"/>
+    <rdf:value>
+          Encapsulated the model under an interface component for use when
+          importing the model into a specific experiment or simulation.
+        </rdf:value>
+    <cmeta:modifier rdf:resource="rdf:#03d54a23-d046-4c30-8036-37b744e2b081"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#2b769f33-6885-4693-a77e-ea53f6064c99">
+    <rdf:value>
+            The opening rate for the h gate.
+          </rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#1b161b67-2455-4f01-b2fc-0bbef6a0b6d8">
+    <rdf:value>
+            Here we define a component which encapsulates the entire model
+            and provides the interface to model boundary conditions and
+            outputs.
+          </rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#ddd353fa-918b-4621-a11b-4368139d5210">
+    <bqs:Pubmed_id>14480151</bqs:Pubmed_id>
+    <bqs:JournalArticle rdf:resource="rdf:#285e74e5-ab5f-4b29-a2c6-97ef5c18006f"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#eedb48af-808f-49de-a39c-def7ad9e631a">
+    <rdf:value>
+
             The opening rate for the m gate.
           </rdf:value>
   </rdf:Description>
-  <rdf:Description rdf:about="rdf:#ee878bf4-162f-4eb6-b7ec-5997075b14ec">
-    <vCard:FN>Catherine Lloyd</vCard:FN>
+  <rdf:Description rdf:about="#beta_h_calculation_eq">
+    <cmeta:comment rdf:resource="rdf:#6c421cbd-3079-4a66-aebc-0cfd56945f6e"/>
   </rdf:Description>
-  <rdf:Description rdf:about="rdf:#10f2f937-2f13-4d0b-a3e6-6010e3312ea6">
-    <bqs:Pubmed_id>14480151</bqs:Pubmed_id>
-    <bqs:JournalArticle rdf:resource="rdf:#6d2720cd-a304-468d-840c-2f24a340d86a"/>
+  <rdf:Description rdf:about="#interface">
+    <cmeta:comment rdf:resource="rdf:#1b161b67-2455-4f01-b2fc-0bbef6a0b6d8"/>
   </rdf:Description>
-  <rdf:Description rdf:about="rdf:#f70e2ada-8e7e-42b6-8106-fc6e45491280">
-    <rdf:value>
-            This is a dummy equation that we simply use to make grabbing the
-            value in CMISS much easier.
-          </rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="#sodium_channel_m_gate">
-    <cmeta:comment rdf:resource="rdf:#b19e532d-c709-458a-b587-d548ac2b362a"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#dbee766b-9d97-4566-afe5-66f5e51e23c6">
-    <rdf:value>
-            The closing rate for the h gate.
-          </rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="#alpha_h_calculation_eq">
-    <cmeta:comment rdf:resource="rdf:#f00d9f15-4a8f-4250-ac44-65c242a0f21f"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#author1VcardN">
-    <vCard:Given>Denis</vCard:Given>
-    <vCard:Family>Noble</vCard:Family>
-  </rdf:Description>
-  <rdf:Description rdf:about="#dm_dt_eq">
-    <cmeta:comment rdf:resource="rdf:#2ebc3c90-0886-4b84-82c1-fd4339d6c3a0"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#membrane">
-    <cmeta:comment rdf:resource="rdf:#69f6a38a-7e3b-4178-82cc-4e139d03d338"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#sodium_channel">
-    <cmeta:comment rdf:resource="rdf:#1e542240-aa20-4c6f-93a6-d9798a14181b"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#beta_n_calculation_eq">
-    <cmeta:comment rdf:resource="rdf:#9a30e413-1e48-4e9e-9f57-452233c7cf24"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#f389acb6-636f-402a-9dce-7d82a90ef237">
-    <dcterms:modified rdf:resource="rdf:#c3d2b537-087c-400d-9f45-e48197208029"/>
-    <rdf:value>
-          Changed units and added stimulus current.
-        </rdf:value>
-    <cmeta:modifier rdf:resource="rdf:#3c7b3f8f-f8db-4cdb-bd42-eff8069efcf4"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#alpha_m_calculation_eq">
-    <cmeta:comment rdf:resource="rdf:#2827a6c4-29e9-4222-9c94-9967182218d9"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#beta_m_calculation_eq">
-    <cmeta:comment rdf:resource="rdf:#f9214f59-a161-4dd2-b982-ac92d28e8b65"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#9a30e413-1e48-4e9e-9f57-452233c7cf24">
-    <rdf:value>
-            The closing rate for the n gate.
-          </rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#bfea0000-699a-417c-93d8-8cfd4b1c323e">
-    <vCard:N rdf:resource="rdf:#0dbc2c42-9775-4695-8949-e30e99099f93"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#potassium_channel">
-    <cmeta:comment rdf:resource="rdf:#b304af12-e5fa-4791-b9d7-c87ca39fbfd1"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#alpha_n_calculation_eq">
-    <cmeta:comment rdf:resource="rdf:#0e493730-b2d9-428d-a976-3d6ebed7cb81"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#e62da2ba-02e0-40af-8f05-9f48a459ca22">
+  <rdf:Description rdf:about="rdf:#45dd41e6-100d-40a8-83c2-702e3f406911">
     <rdf:value>
             Calculation of the potassium current. The g_K_add conductance term
             can be used to obtain a quiescent variant of the model by setting
             its value to 0.001 mS/mm2.
           </rdf:value>
   </rdf:Description>
-  <rdf:Description rdf:about="rdf:#f9eb5e89-4512-4d1e-8430-343bfc5a2d4f">
-    <vCard:N rdf:resource="rdf:#1ebb0a52-8432-4535-b28a-c6fa953ab008"/>
+  <rdf:Description rdf:about="#leakage_current">
+    <cmeta:comment rdf:resource="rdf:#6d7ec565-5377-4a05-9a5b-cd57a5611549"/>
   </rdf:Description>
-  <rdf:Description rdf:about="rdf:#b304af12-e5fa-4791-b9d7-c87ca39fbfd1">
+  <rdf:Description rdf:about="rdf:#6d7ec565-5377-4a05-9a5b-cd57a5611549">
     <rdf:value>
-            The modified Hodgkin Huxley 1952 potassium channel.
+            A non-specific background current attributed in part to chloride
+            ions. Can be turned on by specifying an appropriate value for the
+            conductance (~0.00075 mS/mm2).
           </rdf:value>
   </rdf:Description>
-  <rdf:Description rdf:about="rdf:#0e493730-b2d9-428d-a976-3d6ebed7cb81">
+  <rdf:Description rdf:about="#g_Na_calculation_eq">
+    <cmeta:comment rdf:resource="rdf:#1ecee97c-4d6b-4b53-8de5-109417e08c03"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#6c421cbd-3079-4a66-aebc-0cfd56945f6e">
+    <rdf:value>
+
+            The closing rate for the h gate.
+          </rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#d67fa98a-9b21-48e3-8024-6b0bee0a3648">
+    <rdf:value>
+            The modified sodium current from the 1952 Hodgkin Huxley model.
+          </rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="#sodium_channel_h_gate">
+    <cmeta:comment rdf:resource="rdf:#ee3149d8-6726-4fa3-9285-bfa0729fbbbc"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#beta_m_calculation_eq">
+    <cmeta:comment rdf:resource="rdf:#cd69e790-ff04-4ff5-a221-eaa328adc6e7"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#membrane_voltage_diff_eq">
+    <cmeta:comment rdf:resource="rdf:#2b091a82-53bd-46fd-a218-ed423465e5a1"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#533fa072-c944-44ed-8b62-ae35f1797e43">
+    <vCard:Given>Denis</vCard:Given>
+    <vCard:Family>Noble</vCard:Family>
+  </rdf:Description>
+  <rdf:Description rdf:about="#dn_dt_eq">
+    <cmeta:comment rdf:resource="rdf:#b76443c8-b26b-4e96-8b02-4ae02620e485"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#9abd1696-1566-4a1d-9c1a-fa3cfca7d13b">
+    <dcterms:W3CDTF>2002-02-28</dcterms:W3CDTF>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#cd69e790-ff04-4ff5-a221-eaa328adc6e7">
+    <rdf:value>
+            The closing rate for the m gate.
+          </rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#25d2ead5-78e4-4b85-bab2-0256bf36f9d0">
+    <vCard:Given>Autumn</vCard:Given>
+    <vCard:Family>Cuellar</vCard:Family>
+    <vCard:Other>A</vCard:Other>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#31e80b61-f392-4d0f-a2b0-25b384229a7f">
+    <rdf:value>
+            The kinetics of the m gate.
+          </rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#86bbbba0-d173-4b72-bf89-ab42d3780bcc">
+    <dcterms:modified rdf:resource="rdf:#2303d80d-efd2-48a5-91d4-eef207a2974f"/>
+    <rdf:value>
+          Changed units and added stimulus current.
+        </rdf:value>
+    <cmeta:modifier rdf:resource="rdf:#da15adff-5f91-43e0-966b-95c756ed72d8"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#i_Na_calculation_eq">
+    <cmeta:comment rdf:resource="rdf:#0aa08682-4fba-4dd7-a19e-7f4f29219712"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#dm_dt_eq">
+    <cmeta:comment rdf:resource="rdf:#31e80b61-f392-4d0f-a2b0-25b384229a7f"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#07d8ca47-6d44-4f55-a652-b9299ae05f0e">
+    <dcterms:W3CDTF>2003-04-05</dcterms:W3CDTF>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#285e74e5-ab5f-4b29-a2c6-97ef5c18006f">
+    <dc:creator rdf:resource="rdf:#citationAuthorsSeq"/>
+    <dc:title>A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Action and Pace-maker Potentials</dc:title>
+    <bqs:volume>160</bqs:volume>
+    <bqs:first_page>317</bqs:first_page>
+    <bqs:Journal rdf:resource="rdf:#27ea8cc2-ba25-4fb9-90a2-741d727cb8ff"/>
+    <dcterms:issued rdf:resource="rdf:#b6c5ded8-b966-4cbd-8ba6-9eaafe06dbd8"/>
+    <bqs:last_page>352</bqs:last_page>
+  </rdf:Description>
+  <rdf:Description rdf:about="#alpha_h_calculation_eq">
+    <cmeta:comment rdf:resource="rdf:#2b769f33-6885-4693-a77e-ea53f6064c99"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#8fce5a52-ba5d-4045-a71a-f2a02ab8f51a">
     <rdf:value>
             The opening rate for the n gate.
           </rdf:value>
   </rdf:Description>
-  <rdf:Description rdf:about="#i_Na_calculation_eq">
-    <cmeta:comment rdf:resource="rdf:#b19f8ad8-e549-4077-8f66-b55d0a16601e"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#9e4947eb-a0eb-45a9-b466-ecc0cc92e50c">
-    <dcterms:modified rdf:resource="rdf:#4a04dcee-dd77-4a23-a961-5d6515f51875"/>
-    <rdf:value>
-          Changed the model name so the model loads in the database easier.
-        </rdf:value>
-    <cmeta:modifier rdf:resource="rdf:#d0583dc4-ffec-4d52-ac65-8efe0d5e6ca6"/>
-  </rdf:Description>
   <rdf:Description rdf:about="#dh_dt_eq">
-    <cmeta:comment rdf:resource="rdf:#2638e8ea-4da4-43b5-b2e1-4d6dcfd52f4f"/>
+    <cmeta:comment rdf:resource="rdf:#f23f3305-4cdf-4780-a72c-4152aded0014"/>
   </rdf:Description>
-  <rdf:Description rdf:about="rdf:#1ebb0a52-8432-4535-b28a-c6fa953ab008">
+  <rdf:Description rdf:about="#IStim_for_cmiss_eq">
+    <cmeta:comment rdf:resource="rdf:#40a7165d-11f3-44ce-8a5e-084ed9288f7f"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#b76443c8-b26b-4e96-8b02-4ae02620e485">
+    <rdf:value>
+            The kinetics of the n gate.
+          </rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="#potassium_channel">
+    <cmeta:comment rdf:resource="rdf:#d17354dc-f92c-4bba-8d2d-ad7c9cd6a6b6"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#6a515533-c978-4e91-b090-12c3dfb316fd">
+    <vCard:N rdf:resource="rdf:#25d2ead5-78e4-4b85-bab2-0256bf36f9d0"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#37c3fdbc-9546-445c-b0d3-32d92bb3218f">
+    <dcterms:modified rdf:resource="rdf:#9abd1696-1566-4a1d-9c1a-fa3cfca7d13b"/>
+    <rdf:value>
+          Corrected membrane_voltage_diff_eq.
+        </rdf:value>
+    <cmeta:modifier rdf:resource="rdf:#1915506b-ea68-4a9e-a129-ed9a47839e6f"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#a655e156-1727-4693-8fac-8a54c7ea7ac1">
+    <rdf:value>
+            The closing rate for the n gate.
+          </rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#4dcf8703-5825-475c-bb0b-21b293137954">
     <vCard:Given>Catherine</vCard:Given>
     <vCard:Family>Lloyd</vCard:Family>
     <vCard:Other>May</vCard:Other>
   </rdf:Description>
-  <rdf:Description rdf:about="rdf:#2c044ddc-7779-4d59-bc24-c9a0d0eda999">
+  <rdf:Description rdf:about="#membrane">
+    <cmeta:comment rdf:resource="rdf:#5191b3f2-3e92-4ea6-8fe1-f64cde0d807f"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#2b091a82-53bd-46fd-a218-ed423465e5a1">
+    <rdf:value>
+            The kinetics of the transmembrane potential.
+          </rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#10772f0d-ec12-48b0-92cc-7bd12bb0cc2f">
+    <dcterms:W3CDTF>2004-12-21</dcterms:W3CDTF>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#5f1e0e8c-565d-4f3d-8b8b-c751add81a5f">
+    <vCard:Given>David</vCard:Given>
+    <vCard:Family>Nickerson</vCard:Family>
+    <vCard:Other>P</vCard:Other>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#f4bfca7e-2cfb-4d3a-8858-6287a572bc27">
+    <bqs:Person rdf:resource="rdf:#785bec12-38c2-4b7e-a5f0-249357ec0957"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#a19270c3-372a-4ea9-a340-c9eb1bc5533a">
+    <vCard:FN>Catherine Lloyd</vCard:FN>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#1ecee97c-4d6b-4b53-8de5-109417e08c03">
+    <rdf:value>
+            Calculation of the channel conductance.
+          </rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#39091e4c-c697-4c13-ab7a-2be7a65441ce">
+    <vCard:Given>Catherine</vCard:Given>
+    <vCard:Family>Lloyd</vCard:Family>
+    <vCard:Other>May</vCard:Other>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#d17354dc-f92c-4bba-8d2d-ad7c9cd6a6b6">
+    <rdf:value>
+            The modified Hodgkin Huxley 1952 potassium channel.
+          </rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#0aa08682-4fba-4dd7-a19e-7f4f29219712">
+    <rdf:value>
+
+            Calculation of the channel current.
+          </rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#b33b08cf-e0be-4c98-8bab-1f065d8a8b19">
     <dcterms:W3CDTF>2002-01-20</dcterms:W3CDTF>
   </rdf:Description>
-  <rdf:Description rdf:about="#sodium_channel_h_gate">
-    <cmeta:comment rdf:resource="rdf:#e7229a52-4ee3-4003-999a-5e807bbf02a1"/>
+  <rdf:Description rdf:about="#alpha_n_calculation_eq">
+    <cmeta:comment rdf:resource="rdf:#8fce5a52-ba5d-4045-a71a-f2a02ab8f51a"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#noble_1962_version03">
+    <dc:title>
+        The 1962 Noble Model of Purkinje Fibre Action and Pace-maker Potentials
+      </dc:title>
+    <cmeta:comment rdf:resource="rdf:#38cd39b9-4e98-4126-9afe-5097dbce8923"/>
+    <bqs:reference rdf:resource="rdf:#ddd353fa-918b-4621-a11b-4368139d5210"/>
+    <cmeta:species>Mammalia</cmeta:species>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#785bec12-38c2-4b7e-a5f0-249357ec0957">
+    <vCard:N rdf:resource="rdf:#533fa072-c944-44ed-8b62-ae35f1797e43"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#b6c5ded8-b966-4cbd-8ba6-9eaafe06dbd8">
+    <dcterms:W3CDTF>1962-01-01</dcterms:W3CDTF>
+  </rdf:Description>
+  <rdf:Description rdf:about="#g_K2_calculation_eq">
+    <cmeta:comment rdf:resource="rdf:#bb55d16a-2a7d-4437-a121-428d4b6aff76"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#03d54a23-d046-4c30-8036-37b744e2b081">
+    <vCard:N rdf:resource="rdf:#5f1e0e8c-565d-4f3d-8b8b-c751add81a5f"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#39b163a2-d88e-43fb-9e35-096cee07a629">
+    <vCard:ORG rdf:resource="rdf:#59411310-010e-49e9-958b-90918b640813"/>
+    <vCard:EMAIL rdf:resource="rdf:#a86c0d87-4a46-4367-9750-19b346785c9d"/>
+    <vCard:N rdf:resource="rdf:#4dcf8703-5825-475c-bb0b-21b293137954"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#2303d80d-efd2-48a5-91d4-eef207a2974f">
+    <dcterms:W3CDTF>2003-04-05</dcterms:W3CDTF>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#2908aee8-6497-4ec7-ac21-f6d17da81e91">
+    <rdf:value>
+
+            The voltage-dependent activation gate for the potassium channel -
+            the n gate.
+          </rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="#sodium_channel_m_gate">
+    <cmeta:comment rdf:resource="rdf:#7d20d05b-ddc0-42c7-8075-c245232254f9"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#99da7685-88a0-4947-829b-ef60b97e48a8">
+    <rdf:value>
+            The conductance of the first "type" of potassium channels present in
+            this model, using an empirical formaulation.
+          </rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#a86c0d87-4a46-4367-9750-19b346785c9d">
+    <rdf:type rdf:resource="http://imc.org/vCard/3.0#internet"/>
+    <rdf:value>c.lloyd@auckland.ac.nz</rdf:value>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#author1VcardN">
+    <vCard:Given>Denis</vCard:Given>
+    <vCard:Family>Noble</vCard:Family>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#1915506b-ea68-4a9e-a129-ed9a47839e6f">
+    <vCard:N rdf:resource="rdf:#39091e4c-c697-4c13-ab7a-2be7a65441ce"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#00ae7113-dc38-484a-b3a8-1cf724a2f7c7">
+    <dcterms:modified rdf:resource="rdf:#b33b08cf-e0be-4c98-8bab-1f065d8a8b19"/>
+    <rdf:value>
+          Updated metadata to conform to the 16/01/2002 CellML Metadata 1.0 
+          Specification.
+        </rdf:value>
+    <cmeta:modifier rdf:resource="rdf:#42f59d0c-4c3e-4dd1-929a-205dc5dfeb38"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="rdf:#7e861154-7a2f-4c95-b2b4-e15df0355138">
+    <vCard:Given>Autumn</vCard:Given>
+    <vCard:Family>Cuellar</vCard:Family>
+    <vCard:Other>A.</vCard:Other>
+  </rdf:Description>
+  <rdf:Description rdf:about="#sodium_channel">
+    <cmeta:comment rdf:resource="rdf:#d67fa98a-9b21-48e3-8024-6b0bee0a3648"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#i_K_calculation_eq">
+    <cmeta:comment rdf:resource="rdf:#45dd41e6-100d-40a8-83c2-702e3f406911"/>
   </rdf:Description>
 </rdf:RDF>
 </model>
