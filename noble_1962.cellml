@@ -28,7 +28,7 @@ http://www.CellML.org/
       This model has been curated by both Penny Noble and James Lawson and is known to run in COR, JSim and OpenCell. 
 </para>
 <para>This model is valid CellML and has consistent units</para>
-    </para>
+
   </section>
   <sect1 id="sec_structure">
 <title>Model Structure</title>
