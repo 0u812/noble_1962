@@ -8,7 +8,9 @@ http://COR.physiol.ox.ac.uk/ - COR@physiol.ox.ac.uk
 
 CellML 1.0 was used to generate this cellular model
 http://www.CellML.org/
---><model xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#" xml:base="" cmeta:id="noble_1962_version04" name="noble_1962_version04">
+-->
+
+<model xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqs="http://www.cellml.org/bqs/1.0#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:ns7="http://www.cellml.org/metadata/simulation/1.0#" name="noble_1962" cmeta:id="noble_1962" xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#">
    
 <documentation xmlns="http://cellml.org/tmp-documentation">
 <article>
@@ -18,17 +20,15 @@ http://www.CellML.org/
     <firstname>Catherine</firstname>
           <surname>Lloyd</surname>
     <affiliation>
-      <shortaffil>Bioengineering Institute, University of Auckland</shortaffil>
+      <shortaffil>Auckland Bioengineering Institute, The University of Auckland</shortaffil>
     </affiliation>
   </author>
 </articleinfo>
   <section id="sec_status">
     <title>Model Status</title>
     <para>
-      This model has been curated by both Penny Noble and James Lawson and is known to run in COR, JSim and OpenCell. 
+      This CellML model runs in COR, JSim and OpenCell to recreate the published results. The units have been checked and they are consistent. 
 </para>
-<para>This model is valid CellML and has consistent units</para>
-
   </section>
   <sect1 id="sec_structure">
 <title>Model Structure</title>
@@ -42,7 +42,7 @@ The main failure of the Noble (1962) model is that it only includes one voltage 
 </para>
 
 <para>
-The complete original paper reference is cited below:
+The original paper reference is cited below:
 </para>
 
 <para>
@@ -60,7 +60,7 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
     <imagedata fileref="hodgkin_1952.png"/>
   </imageobject>
 </mediaobject>
-<caption>A schematic cell diagram describing the current flows across the cell membrane that are captured in the Noble 1962 model.  Note that this image is identical to the schematic diagram which describes the Hodgkin-Huxley 1952 model.  This is because the Noble 1962 model is based on the HH 18952 model, and the ony differences are in the parameters of the model, and also the gating of the potassium channel - and these differences do not show in the schematic diagram.</caption>
+<caption>A schematic cell diagram describing the current flows across the cell membrane that are captured in the Noble 1962 model.  Note that this image is identical to the schematic diagram which describes the Hodgkin-Huxley 1952 model.  This is because the Noble 1962 model is based on the HH 1952 model, and the ony differences are in the parameters of the model, and also the gating of the potassium channel - and these differences do not show in the schematic diagram.</caption>
 </informalfigure>
 
 </sect1>
@@ -652,7 +652,7 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
     <vCard:Other xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">May</vCard:Other>
   </rdf:Description>
   <rdf:Description rdf:about="">
-    <dc:publisher xmlns:dc="http://purl.org/dc/elements/1.1/">Bioengineering Institute</dc:publisher>
+    <dc:publisher xmlns:dc="http://purl.org/dc/elements/1.1/">Auckland Bioengineering Institute</dc:publisher>
     <cmeta:comment rdf:resource="rdf:#d2b6f58e-6293-4b50-b751-a6fd3ab1f989"/>
     <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/" rdf:resource="rdf:#b8e6ba3c-0914-43bf-8037-1424182388cb"/>
     <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#6732b89c-f3f7-4b52-b220-223c5e7e6745"/>
@@ -700,8 +700,8 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
     <dcterms:W3CDTF xmlns:dcterms="http://purl.org/dc/terms/">1962-01-01</dcterms:W3CDTF>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#d8ced495-18cf-42f1-94f0-b660e798b273">
-    <vCard:Orgname xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">University of Auckland</vCard:Orgname>
-    <vCard:Orgunit xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Bioengineering Institute</vCard:Orgunit>
+    <vCard:Orgname xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">The University of Auckland</vCard:Orgname>
+    <vCard:Orgunit xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Auckland Bioengineering Institute</vCard:Orgunit>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#aea6598d-b850-4aa6-9bb7-76452adba692">
     <bqs:Pubmed_id xmlns:bqs="http://www.cellml.org/bqs/1.0#">14480151</bqs:Pubmed_id>
@@ -741,7 +741,7 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
     <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#e5a5bd71-3824-4f00-a109-83d494a47634"/>
     <rdf:value>This is the CellML description of Noble's 1962 mathematical model of Purkinje fibre action and pace-maker potentials.  The equations formulated by Hodgkin and Huxley (1952) to describe the electrical activity of squid nerve have been modified to describe the action and pace-maker potentials of the Purkinje fibres of the heart.</rdf:value>
   </rdf:Description>
-  <rdf:Description rdf:about="#noble_1962_version04">
+  <rdf:Description rdf:about="#noble_1962">
     <bqs:reference xmlns:bqs="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#aea6598d-b850-4aa6-9bb7-76452adba692"/>
 <bqs:reference xmlns:bqs="http://www.cellml.org/bqs/1.0#" rdf:parseType="Resource">
   <dc:subject xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:parseType="Resource">
@@ -753,7 +753,7 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
         <rdf:li>electrophysiology</rdf:li>
         <rdf:li>pacemaker</rdf:li>
         <rdf:li>cardiac</rdf:li>
-        <rdf:li>hodgkin-huxley</rdf:li>
+        <rdf:li>Hodgkin-Huxley</rdf:li>
       </rdf:Bag>
     </rdf:value>
   </dc:subject>
