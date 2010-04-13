@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0"?>
 <!--
 This CellML file was generated on 21/08/2007 at 17:38:21 using:
 
@@ -8,7 +8,7 @@ http://COR.physiol.ox.ac.uk/ - COR@physiol.ox.ac.uk
 
 CellML 1.0 was used to generate this cellular model
 http://www.CellML.org/
---><model xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqs="http://www.cellml.org/bqs/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" cmeta:id="noble_1962_version04" name="noble_1962_version04">
+--><model xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#" xml:base="" cmeta:id="noble_1962_version04" name="noble_1962_version04">
    
 <documentation xmlns="http://cellml.org/tmp-documentation">
 <article>
@@ -68,37 +68,37 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
 </documentation>
 
    <units name="per_second">
-      <unit units="second" exponent="-1"/>
+      <unit exponent="-1" units="second"/>
    </units>
    <units name="millivolt">
-      <unit units="volt" prefix="milli"/>
+      <unit prefix="milli" units="volt"/>
    </units>
    <units name="per_millivolt">
-      <unit units="volt" prefix="milli" exponent="-1"/>
+      <unit exponent="-1" prefix="milli" units="volt"/>
    </units>
    <units name="per_millivolt_second">
-      <unit units="millivolt" exponent="-1"/>
-      <unit units="second" exponent="-1"/>
+      <unit exponent="-1" units="millivolt"/>
+      <unit exponent="-1" units="second"/>
    </units>
    <units name="microS">
-      <unit units="siemens" prefix="micro"/>
+      <unit prefix="micro" units="siemens"/>
    </units>
    <units name="microF">
-      <unit units="farad" prefix="micro"/>
+      <unit prefix="micro" units="farad"/>
    </units>
    <units name="nanoA">
-      <unit units="ampere" prefix="nano"/>
+      <unit prefix="nano" units="ampere"/>
    </units>
    <component name="environment">
-      <variable units="second" public_interface="out" name="time"/>
+      <variable cmeta:id="environment_time" name="time" public_interface="out" units="second"/>
    </component>
    <component name="membrane">
-      <variable units="millivolt" public_interface="out" name="V" initial_value="-87"/>
-      <variable units="microF" name="Cm" initial_value="12"/>
-      <variable units="second" public_interface="in" name="time"/>
-      <variable units="nanoA" public_interface="in" name="i_Na"/>
-      <variable units="nanoA" public_interface="in" name="i_K"/>
-      <variable units="nanoA" public_interface="in" name="i_Leak"/>
+      <variable cmeta:id="membrane_V" initial_value="-87" name="V" public_interface="out" units="millivolt"/>
+      <variable initial_value="12" name="Cm" units="microF"/>
+      <variable name="time" public_interface="in" units="second"/>
+      <variable name="i_Na" public_interface="in" units="nanoA"/>
+      <variable name="i_K" public_interface="in" units="nanoA"/>
+      <variable name="i_Leak" public_interface="in" units="nanoA"/>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
          <apply>
             <eq/>
@@ -126,14 +126,14 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
       </math>
    </component>
    <component name="sodium_channel">
-      <variable units="nanoA" public_interface="out" name="i_Na"/>
-      <variable units="microS" name="g_Na_max" initial_value="400000"/>
-      <variable units="microS" name="g_Na"/>
-      <variable units="millivolt" name="E_Na" initial_value="40"/>
-      <variable units="second" public_interface="in" private_interface="out" name="time"/>
-      <variable units="millivolt" public_interface="in" private_interface="out" name="V"/>
-      <variable units="dimensionless" private_interface="in" name="m"/>
-      <variable units="dimensionless" private_interface="in" name="h"/>
+      <variable cmeta:id="sodium_channel_i_Na" name="i_Na" public_interface="out" units="nanoA"/>
+      <variable initial_value="400000" name="g_Na_max" units="microS"/>
+      <variable name="g_Na" units="microS"/>
+      <variable initial_value="40" name="E_Na" units="millivolt"/>
+      <variable name="time" private_interface="out" public_interface="in" units="second"/>
+      <variable name="V" private_interface="out" public_interface="in" units="millivolt"/>
+      <variable name="m" private_interface="in" units="dimensionless"/>
+      <variable name="h" private_interface="in" units="dimensionless"/>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
          <apply>
             <eq/>
@@ -143,7 +143,7 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
                <apply>
                   <power/>
                   <ci>m</ci>
-                  <cn cellml:units="dimensionless">3</cn>
+                  <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="dimensionless">3</cn>
                </apply>
                <ci>h</ci>
                <ci>g_Na_max</ci>
@@ -157,7 +157,7 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
                <apply>
                   <plus/>
                   <ci>g_Na</ci>
-                  <cn cellml:units="microS">140</cn>
+                  <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="microS">140</cn>
                </apply>
                <apply>
                   <minus/>
@@ -169,11 +169,11 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
       </math>
    </component>
    <component name="sodium_channel_m_gate">
-      <variable units="dimensionless" public_interface="out" name="m" initial_value="0.01"/>
-      <variable units="per_second" name="alpha_m"/>
-      <variable units="per_second" name="beta_m"/>
-      <variable units="millivolt" public_interface="in" name="V"/>
-      <variable units="second" public_interface="in" name="time"/>
+      <variable initial_value="0.01" name="m" public_interface="out" units="dimensionless"/>
+      <variable name="alpha_m" units="per_second"/>
+      <variable name="beta_m" units="per_second"/>
+      <variable name="V" public_interface="in" units="millivolt"/>
+      <variable name="time" public_interface="in" units="second"/>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
          <apply>
             <eq/>
@@ -182,14 +182,14 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
                <divide/>
                <apply>
                   <times/>
-                  <cn cellml:units="per_millivolt_second">100</cn>
+                  <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="per_millivolt_second">100</cn>
                   <apply>
                      <minus/>
                      <apply>
                         <minus/>
                         <ci>V</ci>
                      </apply>
-                     <cn cellml:units="millivolt">48</cn>
+                     <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">48</cn>
                   </apply>
                </apply>
                <apply>
@@ -204,12 +204,12 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
                               <minus/>
                               <ci>V</ci>
                            </apply>
-                           <cn cellml:units="millivolt">48</cn>
+                           <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">48</cn>
                         </apply>
-                        <cn cellml:units="millivolt">15</cn>
+                        <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">15</cn>
                      </apply>
                   </apply>
-                  <cn cellml:units="dimensionless">1</cn>
+                  <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="dimensionless">1</cn>
                </apply>
             </apply>
          </apply>
@@ -220,11 +220,11 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
                <divide/>
                <apply>
                   <times/>
-                  <cn cellml:units="per_millivolt_second">120</cn>
+                  <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="per_millivolt_second">120</cn>
                   <apply>
                      <plus/>
                      <ci>V</ci>
-                     <cn cellml:units="millivolt">8</cn>
+                     <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">8</cn>
                   </apply>
                </apply>
                <apply>
@@ -236,12 +236,12 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
                         <apply>
                            <plus/>
                            <ci>V</ci>
-                           <cn cellml:units="millivolt">8</cn>
+                           <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">8</cn>
                         </apply>
-                        <cn cellml:units="millivolt">5</cn>
+                        <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">5</cn>
                      </apply>
                   </apply>
-                  <cn cellml:units="dimensionless">1</cn>
+                  <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="dimensionless">1</cn>
                </apply>
             </apply>
          </apply>
@@ -261,7 +261,7 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
                   <ci>alpha_m</ci>
                   <apply>
                      <minus/>
-                     <cn cellml:units="dimensionless">1</cn>
+                     <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="dimensionless">1</cn>
                      <ci>m</ci>
                   </apply>
                </apply>
@@ -275,18 +275,18 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
       </math>
    </component>
    <component name="sodium_channel_h_gate">
-      <variable units="dimensionless" public_interface="out" name="h" initial_value="0.8"/>
-      <variable units="per_second" name="alpha_h"/>
-      <variable units="per_second" name="beta_h"/>
-      <variable units="millivolt" public_interface="in" name="V"/>
-      <variable units="second" public_interface="in" name="time"/>
+      <variable initial_value="0.8" name="h" public_interface="out" units="dimensionless"/>
+      <variable name="alpha_h" units="per_second"/>
+      <variable name="beta_h" units="per_second"/>
+      <variable name="V" public_interface="in" units="millivolt"/>
+      <variable name="time" public_interface="in" units="second"/>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
          <apply>
             <eq/>
             <ci>alpha_h</ci>
             <apply>
                <times/>
-               <cn cellml:units="per_second">170</cn>
+               <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="per_second">170</cn>
                <apply>
                   <exp/>
                   <apply>
@@ -297,9 +297,9 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
                            <minus/>
                            <ci>V</ci>
                         </apply>
-                        <cn cellml:units="millivolt">90</cn>
+                        <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">90</cn>
                      </apply>
-                     <cn cellml:units="millivolt">20</cn>
+                     <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">20</cn>
                   </apply>
                </apply>
             </apply>
@@ -309,10 +309,10 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
             <ci>beta_h</ci>
             <apply>
                <divide/>
-               <cn cellml:units="per_second">1000</cn>
+               <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="per_second">1000</cn>
                <apply>
                   <plus/>
-                  <cn cellml:units="dimensionless">1</cn>
+                  <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="dimensionless">1</cn>
                   <apply>
                      <exp/>
                      <apply>
@@ -323,9 +323,9 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
                               <minus/>
                               <ci>V</ci>
                            </apply>
-                           <cn cellml:units="millivolt">42</cn>
+                           <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">42</cn>
                         </apply>
-                        <cn cellml:units="millivolt">10</cn>
+                        <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">10</cn>
                      </apply>
                   </apply>
                </apply>
@@ -347,7 +347,7 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
                   <ci>alpha_h</ci>
                   <apply>
                      <minus/>
-                     <cn cellml:units="dimensionless">1</cn>
+                     <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="dimensionless">1</cn>
                      <ci>h</ci>
                   </apply>
                </apply>
@@ -361,12 +361,12 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
       </math>
    </component>
    <component name="potassium_channel">
-      <variable units="nanoA" public_interface="out" name="i_K"/>
-      <variable units="microS" name="g_K1"/>
-      <variable units="microS" name="g_K2"/>
-      <variable units="second" public_interface="in" private_interface="out" name="time"/>
-      <variable units="millivolt" public_interface="in" private_interface="out" name="V"/>
-      <variable units="dimensionless" private_interface="in" name="n"/>
+      <variable cmeta:id="potassium_channel_i_K" name="i_K" public_interface="out" units="nanoA"/>
+      <variable name="g_K1" units="microS"/>
+      <variable name="g_K2" units="microS"/>
+      <variable name="time" private_interface="out" public_interface="in" units="second"/>
+      <variable name="V" private_interface="out" public_interface="in" units="millivolt"/>
+      <variable name="n" private_interface="in" units="dimensionless"/>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
          <apply>
             <eq/>
@@ -381,7 +381,7 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
                <apply>
                   <plus/>
                   <ci>V</ci>
-                  <cn cellml:units="millivolt">100</cn>
+                  <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">100</cn>
                </apply>
             </apply>
          </apply>
@@ -392,7 +392,7 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
                <plus/>
                <apply>
                   <times/>
-                  <cn cellml:units="microS">1200</cn>
+                  <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="microS">1200</cn>
                   <apply>
                      <exp/>
                      <apply>
@@ -403,15 +403,15 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
                               <minus/>
                               <ci>V</ci>
                            </apply>
-                           <cn cellml:units="millivolt">90</cn>
+                           <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">90</cn>
                         </apply>
-                        <cn cellml:units="millivolt">50</cn>
+                        <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">50</cn>
                      </apply>
                   </apply>
                </apply>
                <apply>
                   <times/>
-                  <cn cellml:units="microS">15</cn>
+                  <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="microS">15</cn>
                   <apply>
                      <exp/>
                      <apply>
@@ -419,9 +419,9 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
                         <apply>
                            <plus/>
                            <ci>V</ci>
-                           <cn cellml:units="millivolt">90</cn>
+                           <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">90</cn>
                         </apply>
-                        <cn cellml:units="millivolt">60</cn>
+                        <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">60</cn>
                      </apply>
                   </apply>
                </apply>
@@ -432,22 +432,22 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
             <ci>g_K2</ci>
             <apply>
                <times/>
-               <cn cellml:units="microS">1200</cn>
+               <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="microS">1200</cn>
                <apply>
                   <power/>
                   <ci>n</ci>
-                  <cn cellml:units="dimensionless">4</cn>
+                  <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="dimensionless">4</cn>
                </apply>
             </apply>
          </apply>
       </math>
    </component>
    <component name="potassium_channel_n_gate">
-      <variable units="dimensionless" public_interface="out" name="n" initial_value="0.01"/>
-      <variable units="per_second" name="alpha_n"/>
-      <variable units="per_second" name="beta_n"/>
-      <variable units="millivolt" public_interface="in" name="V"/>
-      <variable units="second" public_interface="in" name="time"/>
+      <variable initial_value="0.01" name="n" public_interface="out" units="dimensionless"/>
+      <variable name="alpha_n" units="per_second"/>
+      <variable name="beta_n" units="per_second"/>
+      <variable name="V" public_interface="in" units="millivolt"/>
+      <variable name="time" public_interface="in" units="second"/>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
          <apply>
             <eq/>
@@ -456,14 +456,14 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
                <divide/>
                <apply>
                   <times/>
-                  <cn cellml:units="per_millivolt_second">0.1</cn>
+                  <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="per_millivolt_second">0.1</cn>
                   <apply>
                      <minus/>
                      <apply>
                         <minus/>
                         <ci>V</ci>
                      </apply>
-                     <cn cellml:units="millivolt">50</cn>
+                     <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">50</cn>
                   </apply>
                </apply>
                <apply>
@@ -478,12 +478,12 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
                               <minus/>
                               <ci>V</ci>
                            </apply>
-                           <cn cellml:units="millivolt">50</cn>
+                           <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">50</cn>
                         </apply>
-                        <cn cellml:units="millivolt">10</cn>
+                        <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">10</cn>
                      </apply>
                   </apply>
-                  <cn cellml:units="dimensionless">1</cn>
+                  <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="dimensionless">1</cn>
                </apply>
             </apply>
          </apply>
@@ -492,7 +492,7 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
             <ci>beta_n</ci>
             <apply>
                <times/>
-               <cn cellml:units="per_second">2</cn>
+               <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="per_second">2</cn>
                <apply>
                   <exp/>
                   <apply>
@@ -503,9 +503,9 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
                            <minus/>
                            <ci>V</ci>
                         </apply>
-                        <cn cellml:units="millivolt">90</cn>
+                        <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">90</cn>
                      </apply>
-                     <cn cellml:units="millivolt">80</cn>
+                     <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="millivolt">80</cn>
                   </apply>
                </apply>
             </apply>
@@ -526,7 +526,7 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
                   <ci>alpha_n</ci>
                   <apply>
                      <minus/>
-                     <cn cellml:units="dimensionless">1</cn>
+                     <cn xmlns:cellml="http://www.cellml.org/cellml/1.0#" cellml:units="dimensionless">1</cn>
                      <ci>n</ci>
                   </apply>
                </apply>
@@ -540,11 +540,11 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
       </math>
    </component>
    <component name="leakage_current">
-      <variable units="nanoA" public_interface="out" name="i_Leak"/>
-      <variable units="microS" name="g_L" initial_value="75"/>
-      <variable units="millivolt" name="E_L" initial_value="-60"/>
-      <variable units="second" public_interface="in" name="time"/>
-      <variable units="millivolt" public_interface="in" name="V"/>
+      <variable cmeta:id="leakage_current_i_Leak" name="i_Leak" public_interface="out" units="nanoA"/>
+      <variable initial_value="75" name="g_L" units="microS"/>
+      <variable initial_value="-60" name="E_L" units="millivolt"/>
+      <variable name="time" public_interface="in" units="second"/>
+      <variable name="V" public_interface="in" units="millivolt"/>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
          <apply>
             <eq/>
@@ -585,166 +585,166 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
       </component_ref>
    </group>
    <connection>
-      <map_components component_2="environment" component_1="membrane"/>
-      <map_variables variable_2="time" variable_1="time"/>
+      <map_components component_1="membrane" component_2="environment"/>
+      <map_variables variable_1="time" variable_2="time"/>
    </connection>
    <connection>
-      <map_components component_2="environment" component_1="sodium_channel"/>
-      <map_variables variable_2="time" variable_1="time"/>
+      <map_components component_1="sodium_channel" component_2="environment"/>
+      <map_variables variable_1="time" variable_2="time"/>
    </connection>
    <connection>
-      <map_components component_2="environment" component_1="potassium_channel"/>
-      <map_variables variable_2="time" variable_1="time"/>
+      <map_components component_1="potassium_channel" component_2="environment"/>
+      <map_variables variable_1="time" variable_2="time"/>
    </connection>
    <connection>
-      <map_components component_2="environment" component_1="leakage_current"/>
-      <map_variables variable_2="time" variable_1="time"/>
+      <map_components component_1="leakage_current" component_2="environment"/>
+      <map_variables variable_1="time" variable_2="time"/>
    </connection>
    <connection>
-      <map_components component_2="sodium_channel" component_1="membrane"/>
-      <map_variables variable_2="V" variable_1="V"/>
-      <map_variables variable_2="i_Na" variable_1="i_Na"/>
+      <map_components component_1="membrane" component_2="sodium_channel"/>
+      <map_variables variable_1="V" variable_2="V"/>
+      <map_variables variable_1="i_Na" variable_2="i_Na"/>
    </connection>
    <connection>
-      <map_components component_2="potassium_channel" component_1="membrane"/>
-      <map_variables variable_2="V" variable_1="V"/>
-      <map_variables variable_2="i_K" variable_1="i_K"/>
+      <map_components component_1="membrane" component_2="potassium_channel"/>
+      <map_variables variable_1="V" variable_2="V"/>
+      <map_variables variable_1="i_K" variable_2="i_K"/>
    </connection>
    <connection>
-      <map_components component_2="leakage_current" component_1="membrane"/>
-      <map_variables variable_2="V" variable_1="V"/>
-      <map_variables variable_2="i_Leak" variable_1="i_Leak"/>
+      <map_components component_1="membrane" component_2="leakage_current"/>
+      <map_variables variable_1="V" variable_2="V"/>
+      <map_variables variable_1="i_Leak" variable_2="i_Leak"/>
    </connection>
    <connection>
-      <map_components component_2="sodium_channel_m_gate" component_1="sodium_channel"/>
-      <map_variables variable_2="m" variable_1="m"/>
-      <map_variables variable_2="time" variable_1="time"/>
-      <map_variables variable_2="V" variable_1="V"/>
+      <map_components component_1="sodium_channel" component_2="sodium_channel_m_gate"/>
+      <map_variables variable_1="m" variable_2="m"/>
+      <map_variables variable_1="time" variable_2="time"/>
+      <map_variables variable_1="V" variable_2="V"/>
    </connection>
    <connection>
-      <map_components component_2="sodium_channel_h_gate" component_1="sodium_channel"/>
-      <map_variables variable_2="h" variable_1="h"/>
-      <map_variables variable_2="time" variable_1="time"/>
-      <map_variables variable_2="V" variable_1="V"/>
+      <map_components component_1="sodium_channel" component_2="sodium_channel_h_gate"/>
+      <map_variables variable_1="h" variable_2="h"/>
+      <map_variables variable_1="time" variable_2="time"/>
+      <map_variables variable_1="V" variable_2="V"/>
    </connection>
    <connection>
-      <map_components component_2="potassium_channel_n_gate" component_1="potassium_channel"/>
-      <map_variables variable_2="n" variable_1="n"/>
-      <map_variables variable_2="time" variable_1="time"/>
-      <map_variables variable_2="V" variable_1="V"/>
+      <map_components component_1="potassium_channel" component_2="potassium_channel_n_gate"/>
+      <map_variables variable_1="n" variable_2="n"/>
+      <map_variables variable_1="time" variable_2="time"/>
+      <map_variables variable_1="V" variable_2="V"/>
    </connection>
 
 
 
 
-<rdf:RDF>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Seq rdf:about="rdf:#bde132e3-049c-4da1-8e0a-b4d71b59075d">
     <rdf:li rdf:resource="rdf:#da0ccc23-6611-4043-a2fa-3c4c3c5cd673"/>
   </rdf:Seq>
   <rdf:Description rdf:about="rdf:#93453950-5f08-4363-90bd-aff472ce905e">
-    <vCard:Given>Peter</vCard:Given>
-    <vCard:Family>Villiger</vCard:Family>
-    <vCard:Other>J</vCard:Other>
+    <vCard:Given xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Peter</vCard:Given>
+    <vCard:Family xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Villiger</vCard:Family>
+    <vCard:Other xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">J</vCard:Other>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#a97bf273-bccc-41f4-854c-7ae43ce5cc63">
-    <vCard:Given>Catherine</vCard:Given>
-    <vCard:Family>Lloyd</vCard:Family>
-    <vCard:Other>May</vCard:Other>
+    <vCard:Given xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Catherine</vCard:Given>
+    <vCard:Family xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Lloyd</vCard:Family>
+    <vCard:Other xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">May</vCard:Other>
   </rdf:Description>
   <rdf:Description rdf:about="">
-    <dc:publisher>Bioengineering Institute</dc:publisher>
+    <dc:publisher xmlns:dc="http://purl.org/dc/elements/1.1/">Bioengineering Institute</dc:publisher>
     <cmeta:comment rdf:resource="rdf:#d2b6f58e-6293-4b50-b751-a6fd3ab1f989"/>
-    <dcterms:created rdf:resource="rdf:#b8e6ba3c-0914-43bf-8037-1424182388cb"/>
-    <dc:creator rdf:resource="rdf:#6732b89c-f3f7-4b52-b220-223c5e7e6745"/>
+    <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/" rdf:resource="rdf:#b8e6ba3c-0914-43bf-8037-1424182388cb"/>
+    <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#6732b89c-f3f7-4b52-b220-223c5e7e6745"/>
     <cmeta:modification rdf:resource="rdf:#3fb6dd2b-a5d0-45a9-9b46-ba6b7c47bad6"/>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#e5a5bd71-3824-4f00-a109-83d494a47634">
-    <vCard:FN>Catherine Lloyd</vCard:FN>
+    <vCard:FN xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Catherine Lloyd</vCard:FN>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#7899ef23-ac75-4102-9531-f07bf2391e36">
     <rdf:type rdf:resource="http://imc.org/vCard/3.0#internet"/>
     <rdf:value>c.lloyd@auckland.ac.nz</rdf:value>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#29ec82ff-8775-4a8a-affa-2d23d612180b">
-    <dcterms:W3CDTF>2006-03-31</dcterms:W3CDTF>
+    <dcterms:W3CDTF xmlns:dcterms="http://purl.org/dc/terms/">2006-03-31</dcterms:W3CDTF>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#4d541118-ca7a-413a-9452-aa240967c7f1">
-    <vCard:N rdf:resource="rdf:#17575034-c342-4933-bab3-b4bb597edd4f"/>
+    <vCard:N xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#17575034-c342-4933-bab3-b4bb597edd4f"/>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#e56a5760-9087-425d-add3-5226ae63d572">
-    <dc:title>Journal of Physiology</dc:title>
+    <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">Journal of Physiology</dc:title>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#6732b89c-f3f7-4b52-b220-223c5e7e6745">
-    <vCard:ORG rdf:resource="rdf:#d8ced495-18cf-42f1-94f0-b660e798b273"/>
-    <vCard:EMAIL rdf:resource="rdf:#7899ef23-ac75-4102-9531-f07bf2391e36"/>
-    <vCard:N rdf:resource="rdf:#a97bf273-bccc-41f4-854c-7ae43ce5cc63"/>
+    <vCard:ORG xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#d8ced495-18cf-42f1-94f0-b660e798b273"/>
+    <vCard:EMAIL xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#7899ef23-ac75-4102-9531-f07bf2391e36"/>
+    <vCard:N xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#a97bf273-bccc-41f4-854c-7ae43ce5cc63"/>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#1ac643bb-53ff-4666-89b0-819cdf84034c">
-    <vCard:N rdf:resource="rdf:#93453950-5f08-4363-90bd-aff472ce905e"/>
+    <vCard:N xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#93453950-5f08-4363-90bd-aff472ce905e"/>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#3fb6dd2b-a5d0-45a9-9b46-ba6b7c47bad6">
-    <dcterms:modified rdf:resource="rdf:#006c1b33-1b41-4dd2-8bd9-56bc28c91701"/>
+    <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/" rdf:resource="rdf:#006c1b33-1b41-4dd2-8bd9-56bc28c91701"/>
     <rdf:value>This models has been curated using the unit checker in COR and is now unit-consistent.</rdf:value>
     <cmeta:modifier rdf:resource="rdf:#4d541118-ca7a-413a-9452-aa240967c7f1"/>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#da0ccc23-6611-4043-a2fa-3c4c3c5cd673">
     <rdf:type rdf:resource="http://www.cellml.org/bqs/1.0#Person"/>
-    <vCard:N rdf:resource="rdf:#668ac89a-7e3f-4741-b844-d9fccc1d635d"/>
+    <vCard:N xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#668ac89a-7e3f-4741-b844-d9fccc1d635d"/>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#967adaad-713c-4689-a962-e69b626e2248">
-    <vCard:ORG rdf:resource="rdf:#e91df542-a47c-43d9-b0ff-b0767719d581"/>
-    <vCard:EMAIL rdf:resource="rdf:#1167aea9-f639-491b-90fd-f4b23332d66d"/>
-    <vCard:N rdf:resource="rdf:#5a885652-b58c-469d-b4d3-8b4923e85adb"/>
+    <vCard:ORG xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#e91df542-a47c-43d9-b0ff-b0767719d581"/>
+    <vCard:EMAIL xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#1167aea9-f639-491b-90fd-f4b23332d66d"/>
+    <vCard:N xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#5a885652-b58c-469d-b4d3-8b4923e85adb"/>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#bab8bf9e-26fc-484f-a5b4-2c4a97a1d123">
-    <dcterms:W3CDTF>1962-01-01</dcterms:W3CDTF>
+    <dcterms:W3CDTF xmlns:dcterms="http://purl.org/dc/terms/">1962-01-01</dcterms:W3CDTF>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#d8ced495-18cf-42f1-94f0-b660e798b273">
-    <vCard:Orgname>University of Auckland</vCard:Orgname>
-    <vCard:Orgunit>Bioengineering Institute</vCard:Orgunit>
+    <vCard:Orgname xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">University of Auckland</vCard:Orgname>
+    <vCard:Orgunit xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Bioengineering Institute</vCard:Orgunit>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#aea6598d-b850-4aa6-9bb7-76452adba692">
-    <bqs:Pubmed_id>14480151</bqs:Pubmed_id>
-    <bqs:JournalArticle rdf:resource="rdf:#9e8fe311-1b9c-477b-a358-d83c2537bbf3"/>
+    <bqs:Pubmed_id xmlns:bqs="http://www.cellml.org/bqs/1.0#">14480151</bqs:Pubmed_id>
+    <bqs:JournalArticle xmlns:bqs="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#9e8fe311-1b9c-477b-a358-d83c2537bbf3"/>
   </rdf:Description>
   <rdf:Description rdf:about="">
     <cmeta:modification rdf:resource="rdf:#fa6607cc-772f-491c-b0bd-c8c641feed13"/>
-    <dcterms:created rdf:resource="rdf:#4851a981-8fa2-4fc8-a679-cbdb4a1da137"/>
-    <dc:creator rdf:resource="rdf:#967adaad-713c-4689-a962-e69b626e2248"/>
+    <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/" rdf:resource="rdf:#4851a981-8fa2-4fc8-a679-cbdb4a1da137"/>
+    <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#967adaad-713c-4689-a962-e69b626e2248"/>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#b8e6ba3c-0914-43bf-8037-1424182388cb">
-    <dcterms:W3CDTF>2007-09-07T00:00:00+00:00</dcterms:W3CDTF>
+    <dcterms:W3CDTF xmlns:dcterms="http://purl.org/dc/terms/">2007-09-07T00:00:00+00:00</dcterms:W3CDTF>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#9faaf430-3656-4f95-be79-a1e31be11187">
-    <vCard:FN>James Lawson</vCard:FN>
+    <vCard:FN xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">James Lawson</vCard:FN>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#9e8fe311-1b9c-477b-a358-d83c2537bbf3">
-    <dc:creator rdf:resource="rdf:#bde132e3-049c-4da1-8e0a-b4d71b59075d"/>
-    <dc:title>A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Action and Pace-Maker Potentials</dc:title>
-    <bqs:volume>160</bqs:volume>
-    <bqs:first_page>317</bqs:first_page>
-    <bqs:Journal rdf:resource="rdf:#e56a5760-9087-425d-add3-5226ae63d572"/>
-    <dcterms:issued rdf:resource="rdf:#bab8bf9e-26fc-484f-a5b4-2c4a97a1d123"/>
-    <bqs:last_page>352</bqs:last_page>
+    <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#bde132e3-049c-4da1-8e0a-b4d71b59075d"/>
+    <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Action and Pace-Maker Potentials</dc:title>
+    <bqs:volume xmlns:bqs="http://www.cellml.org/bqs/1.0#">160</bqs:volume>
+    <bqs:first_page xmlns:bqs="http://www.cellml.org/bqs/1.0#">317</bqs:first_page>
+    <bqs:Journal xmlns:bqs="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#e56a5760-9087-425d-add3-5226ae63d572"/>
+    <dcterms:issued xmlns:dcterms="http://purl.org/dc/terms/" rdf:resource="rdf:#bab8bf9e-26fc-484f-a5b4-2c4a97a1d123"/>
+    <bqs:last_page xmlns:bqs="http://www.cellml.org/bqs/1.0#">352</bqs:last_page>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#fa6607cc-772f-491c-b0bd-c8c641feed13">
-    <dcterms:modified rdf:resource="rdf:#29ec82ff-8775-4a8a-affa-2d23d612180b"/>
+    <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/" rdf:resource="rdf:#29ec82ff-8775-4a8a-affa-2d23d612180b"/>
     <rdf:value>
           added metadata
         </rdf:value>
     <cmeta:modifier rdf:resource="rdf:#1ac643bb-53ff-4666-89b0-819cdf84034c"/>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#4851a981-8fa2-4fc8-a679-cbdb4a1da137">
-    <dcterms:W3CDTF>2005-05-04</dcterms:W3CDTF>
+    <dcterms:W3CDTF xmlns:dcterms="http://purl.org/dc/terms/">2005-05-04</dcterms:W3CDTF>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#017e298c-f99c-41cf-8439-d6a0723656eb">
-    <dc:creator rdf:resource="rdf:#e5a5bd71-3824-4f00-a109-83d494a47634"/>
+    <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#e5a5bd71-3824-4f00-a109-83d494a47634"/>
     <rdf:value>This is the CellML description of Noble's 1962 mathematical model of Purkinje fibre action and pace-maker potentials.  The equations formulated by Hodgkin and Huxley (1952) to describe the electrical activity of squid nerve have been modified to describe the action and pace-maker potentials of the Purkinje fibres of the heart.</rdf:value>
   </rdf:Description>
   <rdf:Description rdf:about="#noble_1962_version04">
-    <bqs:reference rdf:resource="rdf:#aea6598d-b850-4aa6-9bb7-76452adba692"/>
-<bqs:reference rdf:parseType="Resource">
-  <dc:subject rdf:parseType="Resource">
+    <bqs:reference xmlns:bqs="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#aea6598d-b850-4aa6-9bb7-76452adba692"/>
+<bqs:reference xmlns:bqs="http://www.cellml.org/bqs/1.0#" rdf:parseType="Resource">
+  <dc:subject xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:parseType="Resource">
     <bqs:subject_type>keyword</bqs:subject_type>
     <rdf:value>
       <rdf:Bag>
@@ -765,26 +765,26 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
     <rdf:value>penny.noble@physiol.ox.ac.uk</rdf:value>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#d2b6f58e-6293-4b50-b751-a6fd3ab1f989">
-    <dc:creator rdf:resource="rdf:#9faaf430-3656-4f95-be79-a1e31be11187"/>
+    <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#9faaf430-3656-4f95-be79-a1e31be11187"/>
     <rdf:value>This model has been curated by both Penny Noble and James Lawson and is known to run in COR and PCEnv 0.2.</rdf:value>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#17575034-c342-4933-bab3-b4bb597edd4f">
-    <vCard:Given>Penny</vCard:Given>
-    <vCard:Family>Noble</vCard:Family>
+    <vCard:Given xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Penny</vCard:Given>
+    <vCard:Family xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Noble</vCard:Family>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#006c1b33-1b41-4dd2-8bd9-56bc28c91701">
-    <dcterms:W3CDTF>2007-09-07T13:50:26+12:00</dcterms:W3CDTF>
+    <dcterms:W3CDTF xmlns:dcterms="http://purl.org/dc/terms/">2007-09-07T13:50:26+12:00</dcterms:W3CDTF>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#668ac89a-7e3f-4741-b844-d9fccc1d635d">
-    <vCard:Given>D</vCard:Given>
-    <vCard:Family>Noble</vCard:Family>
+    <vCard:Given xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">D</vCard:Given>
+    <vCard:Family xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Noble</vCard:Family>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#5a885652-b58c-469d-b4d3-8b4923e85adb">
-    <vCard:Given>Penny</vCard:Given>
-    <vCard:Family>Noble</vCard:Family>
+    <vCard:Given xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Penny</vCard:Given>
+    <vCard:Family xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Noble</vCard:Family>
   </rdf:Description>
   <rdf:Description rdf:about="rdf:#e91df542-a47c-43d9-b0ff-b0767719d581">
-    <vCard:Orgname>Oxford University</vCard:Orgname>
+    <vCard:Orgname xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Oxford University</vCard:Orgname>
   </rdf:Description>
 </rdf:RDF>
 </model>
