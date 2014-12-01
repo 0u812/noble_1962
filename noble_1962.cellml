@@ -8,9 +8,7 @@ http://COR.physiol.ox.ac.uk/ - COR@physiol.ox.ac.uk
 
 CellML 1.0 was used to generate this cellular model
 http://www.CellML.org/
--->
-
-<model xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqs="http://www.cellml.org/bqs/1.0#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:ns7="http://www.cellml.org/metadata/simulation/1.0#" name="noble_1962" cmeta:id="noble_1962" xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#">
+--><model xmlns="http://www.cellml.org/cellml/1.0#" xmlns:bqs="http://www.cellml.org/bqs/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:ns7="http://www.cellml.org/metadata/simulation/1.0#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xml:base="file:///D:/noble_1962/noble_1962.cellml" cmeta:id="noble_1962" name="noble_1962">
    
 <documentation xmlns="http://cellml.org/tmp-documentation">
 <article>
@@ -92,7 +90,7 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
    <component name="environment">
       <variable cmeta:id="environment_time" name="time" public_interface="out" units="second"/>
    </component>
-   <component name="membrane">
+   <component cmeta:id="id_00001" name="membrane">
       <variable cmeta:id="membrane_V" initial_value="-87" name="V" public_interface="out" units="millivolt"/>
       <variable initial_value="12" name="Cm" units="microF"/>
       <variable name="time" public_interface="in" units="second"/>
@@ -125,7 +123,7 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
          </apply>
       </math>
    </component>
-   <component name="sodium_channel">
+   <component cmeta:id="id_00002" name="sodium_channel">
       <variable cmeta:id="sodium_channel_i_Na" name="i_Na" public_interface="out" units="nanoA"/>
       <variable initial_value="400000" name="g_Na_max" units="microS"/>
       <variable name="g_Na" units="microS"/>
@@ -168,7 +166,7 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
          </apply>
       </math>
    </component>
-   <component name="sodium_channel_m_gate">
+   <component cmeta:id="id_00003" name="sodium_channel_m_gate">
       <variable initial_value="0.01" name="m" public_interface="out" units="dimensionless"/>
       <variable name="alpha_m" units="per_second"/>
       <variable name="beta_m" units="per_second"/>
@@ -274,7 +272,7 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
          </apply>
       </math>
    </component>
-   <component name="sodium_channel_h_gate">
+   <component cmeta:id="id_00004" name="sodium_channel_h_gate">
       <variable initial_value="0.8" name="h" public_interface="out" units="dimensionless"/>
       <variable name="alpha_h" units="per_second"/>
       <variable name="beta_h" units="per_second"/>
@@ -360,7 +358,7 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
          </apply>
       </math>
    </component>
-   <component name="potassium_channel">
+   <component cmeta:id="id_00005" name="potassium_channel">
       <variable cmeta:id="potassium_channel_i_K" name="i_K" public_interface="out" units="nanoA"/>
       <variable name="g_K1" units="microS"/>
       <variable name="g_K2" units="microS"/>
@@ -442,7 +440,7 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
          </apply>
       </math>
    </component>
-   <component name="potassium_channel_n_gate">
+   <component cmeta:id="id_00006" name="potassium_channel_n_gate">
       <variable initial_value="0.01" name="n" public_interface="out" units="dimensionless"/>
       <variable name="alpha_n" units="per_second"/>
       <variable name="beta_n" units="per_second"/>
@@ -539,7 +537,7 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
          </apply>
       </math>
    </component>
-   <component name="leakage_current">
+   <component cmeta:id="id_00007" name="leakage_current">
       <variable cmeta:id="leakage_current_i_Leak" name="i_Leak" public_interface="out" units="nanoA"/>
       <variable initial_value="75" name="g_L" units="microS"/>
       <variable initial_value="-60" name="E_L" units="millivolt"/>
@@ -563,25 +561,25 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
    </component>
    <group>
       <relationship_ref relationship="containment"/>
-      <component_ref component="membrane">
-         <component_ref component="sodium_channel">
-            <component_ref component="sodium_channel_m_gate"/>
-            <component_ref component="sodium_channel_h_gate"/>
+      <component_ref component="membrane" cmeta:id="id_00009">
+         <component_ref component="sodium_channel" cmeta:id="id_00010">
+            <component_ref component="sodium_channel_m_gate" cmeta:id="id_00011"/>
+            <component_ref component="sodium_channel_h_gate" cmeta:id="id_00012"/>
          </component_ref>
-         <component_ref component="potassium_channel">
-            <component_ref component="potassium_channel_n_gate"/>
+         <component_ref component="potassium_channel" cmeta:id="id_00013">
+            <component_ref component="potassium_channel_n_gate" cmeta:id="id_00018"/>
          </component_ref>
-         <component_ref component="leakage_current"/>
+         <component_ref component="leakage_current" cmeta:id="id_00008"/>
       </component_ref>
    </group>
    <group>
       <relationship_ref relationship="encapsulation"/>
-      <component_ref component="sodium_channel">
-         <component_ref component="sodium_channel_m_gate"/>
-         <component_ref component="sodium_channel_h_gate"/>
+      <component_ref component="sodium_channel" cmeta:id="id_00013">
+         <component_ref component="sodium_channel_m_gate" cmeta:id="id_00014"/>
+         <component_ref component="sodium_channel_h_gate" cmeta:id="id_00015"/>
       </component_ref>
-      <component_ref component="potassium_channel">
-         <component_ref component="potassium_channel_n_gate"/>
+      <component_ref component="potassium_channel" cmeta:id="id_00016">
+         <component_ref component="potassium_channel_n_gate" cmeta:id="id_00017"/>
       </component_ref>
    </group>
    <connection>
@@ -637,154 +635,5 @@ A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Acti
 
 
 
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-  <rdf:Seq rdf:about="rdf:#bde132e3-049c-4da1-8e0a-b4d71b59075d">
-    <rdf:li rdf:resource="rdf:#da0ccc23-6611-4043-a2fa-3c4c3c5cd673"/>
-  </rdf:Seq>
-  <rdf:Description rdf:about="rdf:#93453950-5f08-4363-90bd-aff472ce905e">
-    <vCard:Given xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Peter</vCard:Given>
-    <vCard:Family xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Villiger</vCard:Family>
-    <vCard:Other xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">J</vCard:Other>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#a97bf273-bccc-41f4-854c-7ae43ce5cc63">
-    <vCard:Given xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Catherine</vCard:Given>
-    <vCard:Family xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Lloyd</vCard:Family>
-    <vCard:Other xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">May</vCard:Other>
-  </rdf:Description>
-  <rdf:Description rdf:about="">
-    <dc:publisher xmlns:dc="http://purl.org/dc/elements/1.1/">Auckland Bioengineering Institute</dc:publisher>
-    <cmeta:comment rdf:resource="rdf:#d2b6f58e-6293-4b50-b751-a6fd3ab1f989"/>
-    <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/" rdf:resource="rdf:#b8e6ba3c-0914-43bf-8037-1424182388cb"/>
-    <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#6732b89c-f3f7-4b52-b220-223c5e7e6745"/>
-    <cmeta:modification rdf:resource="rdf:#3fb6dd2b-a5d0-45a9-9b46-ba6b7c47bad6"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#e5a5bd71-3824-4f00-a109-83d494a47634">
-    <vCard:FN xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Catherine Lloyd</vCard:FN>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#7899ef23-ac75-4102-9531-f07bf2391e36">
-    <rdf:type rdf:resource="http://imc.org/vCard/3.0#internet"/>
-    <rdf:value>c.lloyd@auckland.ac.nz</rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#29ec82ff-8775-4a8a-affa-2d23d612180b">
-    <dcterms:W3CDTF xmlns:dcterms="http://purl.org/dc/terms/">2006-03-31</dcterms:W3CDTF>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#4d541118-ca7a-413a-9452-aa240967c7f1">
-    <vCard:N xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#17575034-c342-4933-bab3-b4bb597edd4f"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#e56a5760-9087-425d-add3-5226ae63d572">
-    <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">Journal of Physiology</dc:title>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#6732b89c-f3f7-4b52-b220-223c5e7e6745">
-    <vCard:ORG xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#d8ced495-18cf-42f1-94f0-b660e798b273"/>
-    <vCard:EMAIL xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#7899ef23-ac75-4102-9531-f07bf2391e36"/>
-    <vCard:N xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#a97bf273-bccc-41f4-854c-7ae43ce5cc63"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#1ac643bb-53ff-4666-89b0-819cdf84034c">
-    <vCard:N xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#93453950-5f08-4363-90bd-aff472ce905e"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#3fb6dd2b-a5d0-45a9-9b46-ba6b7c47bad6">
-    <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/" rdf:resource="rdf:#006c1b33-1b41-4dd2-8bd9-56bc28c91701"/>
-    <rdf:value>This models has been curated using the unit checker in COR and is now unit-consistent.</rdf:value>
-    <cmeta:modifier rdf:resource="rdf:#4d541118-ca7a-413a-9452-aa240967c7f1"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#da0ccc23-6611-4043-a2fa-3c4c3c5cd673">
-    <rdf:type rdf:resource="http://www.cellml.org/bqs/1.0#Person"/>
-    <vCard:N xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#668ac89a-7e3f-4741-b844-d9fccc1d635d"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#967adaad-713c-4689-a962-e69b626e2248">
-    <vCard:ORG xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#e91df542-a47c-43d9-b0ff-b0767719d581"/>
-    <vCard:EMAIL xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#1167aea9-f639-491b-90fd-f4b23332d66d"/>
-    <vCard:N xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#5a885652-b58c-469d-b4d3-8b4923e85adb"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#bab8bf9e-26fc-484f-a5b4-2c4a97a1d123">
-    <dcterms:W3CDTF xmlns:dcterms="http://purl.org/dc/terms/">1962-01-01</dcterms:W3CDTF>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#d8ced495-18cf-42f1-94f0-b660e798b273">
-    <vCard:Orgname xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">The University of Auckland</vCard:Orgname>
-    <vCard:Orgunit xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Auckland Bioengineering Institute</vCard:Orgunit>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#aea6598d-b850-4aa6-9bb7-76452adba692">
-    <bqs:Pubmed_id xmlns:bqs="http://www.cellml.org/bqs/1.0#">14480151</bqs:Pubmed_id>
-    <bqs:JournalArticle xmlns:bqs="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#9e8fe311-1b9c-477b-a358-d83c2537bbf3"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="">
-    <cmeta:modification rdf:resource="rdf:#fa6607cc-772f-491c-b0bd-c8c641feed13"/>
-    <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/" rdf:resource="rdf:#4851a981-8fa2-4fc8-a679-cbdb4a1da137"/>
-    <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#967adaad-713c-4689-a962-e69b626e2248"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#b8e6ba3c-0914-43bf-8037-1424182388cb">
-    <dcterms:W3CDTF xmlns:dcterms="http://purl.org/dc/terms/">2007-09-07T00:00:00+00:00</dcterms:W3CDTF>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#9faaf430-3656-4f95-be79-a1e31be11187">
-    <vCard:FN xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">James Lawson</vCard:FN>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#9e8fe311-1b9c-477b-a358-d83c2537bbf3">
-    <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#bde132e3-049c-4da1-8e0a-b4d71b59075d"/>
-    <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Action and Pace-Maker Potentials</dc:title>
-    <bqs:volume xmlns:bqs="http://www.cellml.org/bqs/1.0#">160</bqs:volume>
-    <bqs:first_page xmlns:bqs="http://www.cellml.org/bqs/1.0#">317</bqs:first_page>
-    <bqs:Journal xmlns:bqs="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#e56a5760-9087-425d-add3-5226ae63d572"/>
-    <dcterms:issued xmlns:dcterms="http://purl.org/dc/terms/" rdf:resource="rdf:#bab8bf9e-26fc-484f-a5b4-2c4a97a1d123"/>
-    <bqs:last_page xmlns:bqs="http://www.cellml.org/bqs/1.0#">352</bqs:last_page>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#fa6607cc-772f-491c-b0bd-c8c641feed13">
-    <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/" rdf:resource="rdf:#29ec82ff-8775-4a8a-affa-2d23d612180b"/>
-    <rdf:value>
-          added metadata
-        </rdf:value>
-    <cmeta:modifier rdf:resource="rdf:#1ac643bb-53ff-4666-89b0-819cdf84034c"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#4851a981-8fa2-4fc8-a679-cbdb4a1da137">
-    <dcterms:W3CDTF xmlns:dcterms="http://purl.org/dc/terms/">2005-05-04</dcterms:W3CDTF>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#017e298c-f99c-41cf-8439-d6a0723656eb">
-    <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#e5a5bd71-3824-4f00-a109-83d494a47634"/>
-    <rdf:value>This is the CellML description of Noble's 1962 mathematical model of Purkinje fibre action and pace-maker potentials.  The equations formulated by Hodgkin and Huxley (1952) to describe the electrical activity of squid nerve have been modified to describe the action and pace-maker potentials of the Purkinje fibres of the heart.</rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="#noble_1962">
-    <bqs:reference xmlns:bqs="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#aea6598d-b850-4aa6-9bb7-76452adba692"/>
-<bqs:reference xmlns:bqs="http://www.cellml.org/bqs/1.0#" rdf:parseType="Resource">
-  <dc:subject xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:parseType="Resource">
-    <bqs:subject_type>keyword</bqs:subject_type>
-    <rdf:value>
-      <rdf:Bag>
-        <rdf:li>purkinje</rdf:li>
-        <rdf:li>Purkinje fibre</rdf:li>
-        <rdf:li>electrophysiology</rdf:li>
-        <rdf:li>pacemaker</rdf:li>
-        <rdf:li>cardiac</rdf:li>
-        <rdf:li>Hodgkin-Huxley</rdf:li>
-      </rdf:Bag>
-    </rdf:value>
-  </dc:subject>
-</bqs:reference>
-    <cmeta:comment rdf:resource="rdf:#017e298c-f99c-41cf-8439-d6a0723656eb"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#1167aea9-f639-491b-90fd-f4b23332d66d">
-    <rdf:type rdf:resource="http://imc.org/vCard/3.0#internet"/>
-    <rdf:value>penny.noble@physiol.ox.ac.uk</rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#d2b6f58e-6293-4b50-b751-a6fd3ab1f989">
-    <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#9faaf430-3656-4f95-be79-a1e31be11187"/>
-    <rdf:value>This model has been curated by both Penny Noble and James Lawson and is known to run in COR and PCEnv 0.2.</rdf:value>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#17575034-c342-4933-bab3-b4bb597edd4f">
-    <vCard:Given xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Penny</vCard:Given>
-    <vCard:Family xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Noble</vCard:Family>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#006c1b33-1b41-4dd2-8bd9-56bc28c91701">
-    <dcterms:W3CDTF xmlns:dcterms="http://purl.org/dc/terms/">2007-09-07T13:50:26+12:00</dcterms:W3CDTF>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#668ac89a-7e3f-4741-b844-d9fccc1d635d">
-    <vCard:Given xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">D</vCard:Given>
-    <vCard:Family xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Noble</vCard:Family>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#5a885652-b58c-469d-b4d3-8b4923e85adb">
-    <vCard:Given xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Penny</vCard:Given>
-    <vCard:Family xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Noble</vCard:Family>
-  </rdf:Description>
-  <rdf:Description rdf:about="rdf:#e91df542-a47c-43d9-b0ff-b0767719d581">
-    <vCard:Orgname xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">Oxford University</vCard:Orgname>
-  </rdf:Description>
-</rdf:RDF>
-</model>
+
+<rdf:RDF><rdf:Description rdf:about="rdf:#bde132e3-049c-4da1-8e0a-b4d71b59075d"><rdf:type><rdf:Description rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq"/></rdf:type><rdf:_1><rdf:Description rdf:about="rdf:#da0ccc23-6611-4043-a2fa-3c4c3c5cd673"/></rdf:_1></rdf:Description><rdf:Description rdf:about="rdf:#da0ccc23-6611-4043-a2fa-3c4c3c5cd673"><rdf:type><rdf:Description rdf:about="http://www.cellml.org/bqs/1.0#Person"/></rdf:type><vCard:N><rdf:Description rdf:about="rdf:#668ac89a-7e3f-4741-b844-d9fccc1d635d"/></vCard:N></rdf:Description><rdf:Description rdf:about="rdf:#e5a5bd71-3824-4f00-a109-83d494a47634"><vCard:FN xml:lang="en">Catherine Lloyd</vCard:FN></rdf:Description><rdf:Description rdf:about="rdf:#e56a5760-9087-425d-add3-5226ae63d572"><dc:title xml:lang="en">Journal of Physiology</dc:title></rdf:Description><rdf:Description rdf:about="rdf:#668ac89a-7e3f-4741-b844-d9fccc1d635d"><vCard:Given xml:lang="en">D</vCard:Given><vCard:Family xml:lang="en">Noble</vCard:Family></rdf:Description><rdf:Description rdf:about="rdf:#bab8bf9e-26fc-484f-a5b4-2c4a97a1d123"><dcterms:W3CDTF xml:lang="en">1962-01-01</dcterms:W3CDTF></rdf:Description><rdf:Description rdf:about="rdf:#aea6598d-b850-4aa6-9bb7-76452adba692"><bqs:Pubmed_id xml:lang="en">14480151</bqs:Pubmed_id><bqs:JournalArticle><rdf:Description rdf:about="rdf:#9e8fe311-1b9c-477b-a358-d83c2537bbf3"/></bqs:JournalArticle></rdf:Description><rdf:Description rdf:about="rdf:#9e8fe311-1b9c-477b-a358-d83c2537bbf3"><dc:creator><rdf:Description rdf:about="rdf:#bde132e3-049c-4da1-8e0a-b4d71b59075d"/></dc:creator><dc:title xml:lang="en">A Modification of the Hodgkin-Huxley Equations Applicable to Purkinje Fibre Action and Pace-Maker Potentials</dc:title><bqs:volume xml:lang="en">160</bqs:volume><bqs:first_page xml:lang="en">317</bqs:first_page><bqs:Journal><rdf:Description rdf:about="rdf:#e56a5760-9087-425d-add3-5226ae63d572"/></bqs:Journal><dcterms:issued><rdf:Description rdf:about="rdf:#bab8bf9e-26fc-484f-a5b4-2c4a97a1d123"/></dcterms:issued><bqs:last_page xml:lang="en">352</bqs:last_page></rdf:Description><rdf:Description rdf:about="rdf:#017e298c-f99c-41cf-8439-d6a0723656eb"><dc:creator><rdf:Description rdf:about="rdf:#e5a5bd71-3824-4f00-a109-83d494a47634"/></dc:creator><rdf:value xml:lang="en">This is the CellML description of Noble's 1962 mathematical model of Purkinje fibre action and pace-maker potentials.  The equations formulated by Hodgkin and Huxley (1952) to describe the electrical activity of squid nerve have been modified to describe the action and pace-maker potentials of the Purkinje fibres of the heart.</rdf:value></rdf:Description><rdf:Description rdf:about="#noble_1962"><cmeta:comment><rdf:Description rdf:about="rdf:#017e298c-f99c-41cf-8439-d6a0723656eb"/></cmeta:comment><bqs:reference><rdf:Description rdf:about="rdf:#aea6598d-b850-4aa6-9bb7-76452adba692"/></bqs:reference><bqs:reference><rdf:Description rdf:nodeID="n1"/></bqs:reference></rdf:Description><rdf:Description rdf:about="#id_00001"><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0042391"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0060075"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0030322"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005272"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034706"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005248"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0001518"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005267"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034705"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005249"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0008076"/></isVersionOf></rdf:Description><rdf:Description rdf:about="#id_00002"><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005272"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034706"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005248"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0001518"/></isVersionOf></rdf:Description><rdf:Description rdf:about="#id_00003"><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005272"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034706"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005248"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0001518"/></isVersionOf></rdf:Description><rdf:Description rdf:about="#id_00004"><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005272"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034706"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005248"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0001518"/></isVersionOf></rdf:Description><rdf:Description rdf:about="#id_00005"><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005267"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034705"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005249"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0008076"/></isVersionOf></rdf:Description><rdf:Description rdf:about="#id_00006"><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005267"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034705"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005249"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0008076"/></isVersionOf></rdf:Description><rdf:Description rdf:about="#id_00007"><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0022840"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005254"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034707"/></isVersionOf></rdf:Description><rdf:Description rdf:about="#id_00008"><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0022840"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005254"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034707"/></isVersionOf></rdf:Description><rdf:Description rdf:about="#id_00009"><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0042391"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0060075"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0030322"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005272"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034706"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005248"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0001518"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005267"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034705"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005249"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0008076"/></isVersionOf></rdf:Description><rdf:Description rdf:about="#id_00010"><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005272"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034706"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005248"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0001518"/></isVersionOf></rdf:Description><rdf:Description rdf:about="#id_00011"><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005272"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034706"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005248"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0001518"/></isVersionOf></rdf:Description><rdf:Description rdf:about="#id_00012"><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005272"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034706"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005248"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0001518"/></isVersionOf></rdf:Description><rdf:Description rdf:about="#id_00013"><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005272"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034706"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005248"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0001518"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005267"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034705"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005249"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0008076"/></isVersionOf></rdf:Description><rdf:Description rdf:about="#id_00014"><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005272"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034706"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005248"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0001518"/></isVersionOf></rdf:Description><rdf:Description rdf:about="#id_00015"><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005272"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034706"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005248"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0001518"/></isVersionOf></rdf:Description><rdf:Description rdf:about="#id_00016"><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005267"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034705"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005249"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0008076"/></isVersionOf></rdf:Description><rdf:Description rdf:about="#id_00017"><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005267"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034705"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005249"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0008076"/></isVersionOf></rdf:Description><rdf:Description rdf:about="#id_00018"><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005267"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0034705"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0005249"/></isVersionOf><isVersionOf xmlns="http://biomodels.net/biology-qualifiers/"><rdf:Description rdf:about="http://identifiers.org/go/GO:0008076"/></isVersionOf></rdf:Description></rdf:RDF></model>
